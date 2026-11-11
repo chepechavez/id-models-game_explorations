@@ -2,12 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CaseItem, SessionRoundCount } from '../types';
 import { createRoom } from '../game/roomApi';
-import {
-  FirebaseRuntimeConfig,
-  getActiveBackendMode,
-  getStoredFirebaseConfig,
-  saveFirebaseConfigToStorage,
-} from '../firebase';
+import { getActiveBackendMode, setForceLocalMode } from '../firebase';
 
 interface HostSetupViewProps {
   cases: CaseItem[];
@@ -21,40 +16,7 @@ export const HostSetupView: React.FC<HostSetupViewProps> = ({ cases }) => {
   const [durL3, setDurL3] = useState<number>(300);
   const [creating, setCreating] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
-  // Panel opcional de configuración Firebase en vivo
-  const existingCfg = getStoredFirebaseConfig();
-  const [showFbConfig, setShowFbConfig] = useState(false);
-  const [fbJsonInput, setFbJsonInput] = useState(
-    existingCfg ? JSON.stringify(existingCfg, null, 2) : ''
-  );
-  const [fbStatusMsg, setFbStatusMsg] = useState<string | null>(null);
-
-  const handleSaveFirebaseConfig = () => {
-    setFbStatusMsg(null);
-    if (!fbJsonInput.trim()) {
-      saveFirebaseConfigToStorage(null);
-      setFbStatusMsg('Configuración limpiada. Usando modo multi-pestaña local.');
-      return;
-    }
-    try {
-      // Permite pegar tanto JSON puro como el bloque const firebaseConfig = { ... }
-      const cleaned = fbJsonInput
-        .replace(/^[^{]*({[\s\S]*})[^}]*$/, '$1')
-        .replace(/(\w+)\s*:/g, '"$1":')
-        .replace(/""(\w+)""\s*:/g, '"$1":')
-        .replace(/'/g, '"')
-        .replace(/,\s*}/g, '}');
-      const parsed = JSON.parse(cleaned) as FirebaseRuntimeConfig;
-      if (!parsed.apiKey || !parsed.databaseURL || !parsed.projectId) {
-        throw new Error('Faltan campos requeridos: apiKey, databaseURL o projectId.');
-      }
-      saveFirebaseConfigToStorage(parsed);
-      setFbStatusMsg('✓ Credenciales Firebase guardadas. Recarga o crea la sala para conectar.');
-    } catch (err: any) {
-      setFbStatusMsg(`Error de formato: ${err?.message || 'Revisa el JSON de firebaseConfig.'}`);
-    }
-  };
+  const [mode, setMode] = useState(() => getActiveBackendMode());
 
   const handleCreateRoom = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -71,13 +33,18 @@ export const HostSetupView: React.FC<HostSetupViewProps> = ({ cases }) => {
       });
       navigate(`/host/${code}`);
     } catch (err: any) {
-      setError(err?.message || 'No se pudo crear la sala.');
+      const msg = String(err?.message || '');
+      if (msg.includes('PERMISSION_DENIED') || msg.includes('permission_denied')) {
+        setError(
+          'Firebase rechazó la escritura (PERMISSION_DENIED): abre Firebase Console → Realtime Database → Reglas (Rules) y publica el contenido de database.rules.json.'
+        );
+      } else {
+        setError(msg || 'No se pudo crear la sala.');
+      }
     } finally {
       setCreating(false);
     }
   };
-
-  const mode = getActiveBackendMode();
 
   return (
     <main className="container" style={{ maxWidth: '860px' }}>
@@ -248,61 +215,42 @@ export const HostSetupView: React.FC<HostSetupViewProps> = ({ cases }) => {
           </button>
         </form>
 
-        {/* Configuración de Firebase Cloud (opcional en vivo) */}
+        {/* Indicador de estado de sincronización */}
         <div
           style={{
             borderTop: '1px solid var(--border-subtle)',
             paddingTop: '1rem',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            flexWrap: 'wrap',
+            gap: '0.5rem',
           }}
         >
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.5rem' }}>
-            <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
-              Motor de sincronización actual:{' '}
-              <strong style={{ color: 'var(--accent-gold)' }}>
-                {mode === 'firebase-cloud'
-                  ? 'Firebase Realtime Database (Multidispositivo en la nube)'
-                  : mode === 'firebase-emulator'
-                  ? 'Emulador Local de Firebase Realtime Database'
-                  : 'Modo Ensayo Local (Sincronización instantánea entre pestañas)'}
-              </strong>
-            </div>
-            <button
-              type="button"
-              className="btn btn-sm"
-              onClick={() => setShowFbConfig(!showFbConfig)}
-            >
-              {showFbConfig ? 'Ocultar configuración Firebase' : 'Configurar Firebase Cloud ($0 Spark)'}
-            </button>
+          <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+            Motor de sincronización:{' '}
+            <strong style={{ color: 'var(--accent-gold)' }}>
+              {mode === 'firebase-cloud'
+                ? 'Firebase Realtime Database (Multidispositivo en la nube)'
+                : mode === 'firebase-emulator'
+                ? 'Emulador Local de Firebase Realtime Database'
+                : 'Modo Ensayo Local (Sincronización entre pestañas)'}
+            </strong>
           </div>
-
-          {showFbConfig && (
-            <div
-              className="surface-card-elevated"
-              style={{ marginTop: '0.85rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}
-            >
-              <p style={{ fontSize: '0.84rem', color: 'var(--text-secondary)' }}>
-                Pega aquí el objeto <code>firebaseConfig</code> de tu proyecto gratuito de Firebase
-                (consulta <code>docs/firebase-setup.md</code>). Al crear la sala, el código QR y el
-                enlace de invitación incluirán automáticamente la conexión para tus estudiantes.
-              </p>
-              <textarea
-                rows={6}
-                className="text-input mono-num"
-                placeholder={'{\n  "apiKey": "AIza...",\n  "authDomain": "tu-app.firebaseapp.com",\n  "databaseURL": "https://tu-app-default-rtdb.firebaseio.com",\n  "projectId": "tu-app"\n}'}
-                value={fbJsonInput}
-                onChange={(e) => setFbJsonInput(e.target.value)}
-                style={{ fontSize: '0.82rem' }}
-              />
-              {fbStatusMsg && (
-                <div style={{ fontSize: '0.83rem', color: 'var(--accent-gold)' }}>{fbStatusMsg}</div>
-              )}
-              <div style={{ display: 'flex', gap: '0.5rem' }}>
-                <button type="button" className="btn btn-sm btn-primary" onClick={handleSaveFirebaseConfig}>
-                  Guardar Credenciales Firebase
-                </button>
-              </div>
-            </div>
-          )}
+          <button
+            type="button"
+            className="btn btn-sm"
+            onClick={() => {
+              const nextLocal = mode !== 'local-broadcast';
+              setForceLocalMode(nextLocal);
+              setMode(getActiveBackendMode());
+              setError(null);
+            }}
+          >
+            {mode === 'local-broadcast'
+              ? 'Usar Sincronización en la Nube'
+              : 'Usar Modo Ensayo Local'}
+          </button>
         </div>
       </div>
     </main>

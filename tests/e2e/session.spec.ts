@@ -12,9 +12,9 @@ test('Flujo completo E2E: Docente + Proyección + Estudiantes + Cambio de respue
     viewport: { width: 1440, height: 900 },
   });
 
-  // 1. Pestaña del Docente: Crear una sala de 6 rondas
+  // 1. Pestaña del Docente: Crear una sala de 6 rondas (en modo local-broadcast determinista para E2E)
   const hostPage = await context.newPage();
-  await hostPage.goto('/#/host');
+  await hostPage.goto('/?local=1#/host');
   await expect(hostPage.locator('h1')).toContainText('Configurar Nueva Sesión');
 
   await hostPage.click('#select-rounds-6');

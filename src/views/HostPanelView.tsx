@@ -12,7 +12,6 @@ import {
   revealRound,
 } from '../game/roomApi';
 import { computeLeaderboard } from '../game/analytics';
-import { encodeFirebaseConfigParam, getStoredFirebaseConfig } from '../firebase';
 
 interface HostPanelViewProps {
   cases: CaseItem[];
@@ -70,10 +69,9 @@ export const HostPanelView: React.FC<HostPanelViewProps> = ({ cases, models }) =
     return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
   };
 
-  const fbParam = encodeFirebaseConfigParam(getStoredFirebaseConfig());
   const baseHref = window.location.origin + window.location.pathname;
-  const joinUrl = `${baseHref}#/?code=${room.code}${fbParam ? `&fb=${fbParam}` : ''}`;
-  const screenUrl = `${baseHref}#/screen/${room.code}${fbParam ? `?fb=${fbParam}` : ''}`;
+  const joinUrl = `${baseHref}#/?code=${room.code}`;
+  const screenUrl = `${baseHref}#/screen/${room.code}`;
 
   const handleStartFirstRound = async () => {
     const firstCase = cases.find((c) => c.id === room.config.sequence[0]);

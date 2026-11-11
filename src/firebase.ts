@@ -10,10 +10,10 @@ export interface FirebaseRuntimeConfig {
   appId?: string;
 }
 
-const STORAGE_KEY = 'el_encargo_firebase_config_v1';
+const FORCE_LOCAL_KEY = 'el_encargo_force_local_v1';
 
-// Si el docente desea dejar sus credenciales fijas en el código, puede pegarlas aquí:
-const HARDCODED_CONFIG: Partial<FirebaseRuntimeConfig> = {
+// Lee exclusivamente las variables de entorno inyectadas en el build (GitHub Actions / .env.local)
+const ENV_CONFIG: Partial<FirebaseRuntimeConfig> = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY || '',
   authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || '',
   databaseURL: import.meta.env.VITE_FIREBASE_DATABASE_URL || '',
@@ -31,75 +31,35 @@ export function isEmulatorRequested(): boolean {
   return false;
 }
 
-export function getStoredFirebaseConfig(): FirebaseRuntimeConfig | null {
-  if (typeof window === 'undefined') return null;
-
-  // 1. Revisar si viene codificado en el enlace de invitación (?fb=base64)
-  try {
-    const hashQuery = window.location.hash.includes('?')
-      ? window.location.hash.split('?')[1]
-      : window.location.search.slice(1);
-    const params = new URLSearchParams(hashQuery);
-    const encoded = params.get('fb');
-    if (encoded) {
-      const parsed = JSON.parse(atob(encoded));
-      if (parsed && parsed.apiKey && parsed.databaseURL && parsed.projectId) {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(parsed));
-        return parsed;
-      }
-    }
-  } catch {
-    // Ignorar parámetro malformado
+export function isForceLocalRequested(): boolean {
+  if (typeof window === 'undefined') return false;
+  const search = window.location.search || window.location.hash.split('?')[1] || '';
+  const params = new URLSearchParams(search);
+  if (params.get('local') === '1') {
+    localStorage.setItem(FORCE_LOCAL_KEY, '1');
+    return true;
   }
-
-  // 2. Revisar localStorage
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) {
-      const parsed = JSON.parse(raw);
-      if (parsed && parsed.apiKey && parsed.databaseURL && parsed.projectId) {
-        return parsed;
-      }
-    }
-  } catch {
-    // Ignorar
+  if (params.get('local') === '0') {
+    localStorage.removeItem(FORCE_LOCAL_KEY);
+    return false;
   }
-
-  // 3. Revisar variables de entorno / config fija
-  if (
-    HARDCODED_CONFIG.apiKey &&
-    HARDCODED_CONFIG.databaseURL &&
-    HARDCODED_CONFIG.projectId
-  ) {
-    return HARDCODED_CONFIG as FirebaseRuntimeConfig;
-  }
-
-  return null;
+  return localStorage.getItem(FORCE_LOCAL_KEY) === '1';
 }
 
-export function saveFirebaseConfigToStorage(config: FirebaseRuntimeConfig | null): void {
+export function setForceLocalMode(enabled: boolean): void {
   if (typeof window === 'undefined') return;
-  if (!config) {
-    localStorage.removeItem(STORAGE_KEY);
+  if (enabled) {
+    localStorage.setItem(FORCE_LOCAL_KEY, '1');
   } else {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(config));
+    localStorage.removeItem(FORCE_LOCAL_KEY);
   }
 }
 
-export function encodeFirebaseConfigParam(config: FirebaseRuntimeConfig | null): string {
-  if (!config) return '';
-  try {
-    return btoa(
-      JSON.stringify({
-        apiKey: config.apiKey,
-        databaseURL: config.databaseURL,
-        projectId: config.projectId,
-        authDomain: config.authDomain,
-      })
-    );
-  } catch {
-    return '';
+export function getEnvFirebaseConfig(): FirebaseRuntimeConfig | null {
+  if (ENV_CONFIG.apiKey && ENV_CONFIG.databaseURL && ENV_CONFIG.projectId) {
+    return ENV_CONFIG as FirebaseRuntimeConfig;
   }
+  return null;
 }
 
 let cachedApp: FirebaseApp | null = null;
@@ -110,8 +70,9 @@ let emulatorConnected = false;
 export type BackendMode = 'firebase-cloud' | 'firebase-emulator' | 'local-broadcast';
 
 export function getActiveBackendMode(): BackendMode {
+  if (isForceLocalRequested()) return 'local-broadcast';
   if (isEmulatorRequested()) return 'firebase-emulator';
-  if (getStoredFirebaseConfig()) return 'firebase-cloud';
+  if (getEnvFirebaseConfig()) return 'firebase-cloud';
   return 'local-broadcast';
 }
 
@@ -138,7 +99,7 @@ export function getFirebaseHandles(): {
         projectId: 'demo-el-encargo',
       });
     } else {
-      const cfg = getStoredFirebaseConfig()!;
+      const cfg = getEnvFirebaseConfig()!;
       cachedApp = initializeApp(cfg);
     }
 
@@ -161,11 +122,25 @@ export async function ensureParticipantIdentity(): Promise<{ uid: string; mode: 
     if (auth.currentUser) {
       return { uid: auth.currentUser.uid, mode };
     }
-    const cred = await signInAnonymously(auth);
-    return { uid: cred.user.uid, mode };
+    try {
+      const cred = await signInAnonymously(auth);
+      return { uid: cred.user.uid, mode };
+    } catch (err: any) {
+      const code = err?.code || '';
+      if (
+        code === 'auth/configuration-not-found' ||
+        code === 'auth/operation-not-allowed' ||
+        code === 'auth/admin-restricted-operation'
+      ) {
+        throw new Error(
+          'Falta habilitar "Acceso Anónimo" en Firebase Console: entra a Authentication → Sign-in method (Método de acceso) → Anónimo → Habilitar y Guardar.'
+        );
+      }
+      throw err;
+    }
   }
 
-  // Modo ensayo local (persiste por pestaña o sesión en localStorage/sessionStorage)
+  // Modo ensayo local (persiste por pestaña o sesión en localStorage)
   const localUidKey = 'el_encargo_local_uid_v1';
   let uid = localStorage.getItem(localUidKey);
   if (!uid) {
