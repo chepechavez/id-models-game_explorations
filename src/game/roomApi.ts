@@ -112,6 +112,14 @@ export async function createRoom(
     writeLocalRoom(code, initialRoom);
   }
 
+  if (typeof window !== 'undefined') {
+    try {
+      localStorage.setItem('el_encargo_last_host_room', code);
+    } catch {
+      // Ignore
+    }
+  }
+
   return { code, hostUid: uid };
 }
 

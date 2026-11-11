@@ -69,6 +69,40 @@ export const HostSetupView: React.FC<HostSetupViewProps> = ({ cases }) => {
           </p>
         </div>
 
+        {typeof window !== 'undefined' && localStorage.getItem('el_encargo_last_host_room') && (
+          <div
+            className="surface-card-elevated"
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              flexWrap: 'wrap',
+              gap: '0.75rem',
+              borderLeft: '4px solid var(--accent-emerald)',
+              padding: '0.85rem 1.15rem',
+            }}
+          >
+            <div>
+              <div style={{ fontWeight: 600, color: 'var(--accent-emerald)', fontSize: '0.92rem' }}>
+                ✓ Tienes una sala reciente en este navegador
+              </div>
+              <div style={{ fontSize: '0.83rem', color: 'var(--text-secondary)', marginTop: '0.15rem' }}>
+                Código de sala:{' '}
+                <strong className="mono-num" style={{ color: 'var(--text-primary)' }}>
+                  {localStorage.getItem('el_encargo_last_host_room')}
+                </strong>
+              </div>
+            </div>
+            <button
+              type="button"
+              className="btn btn-sm btn-primary"
+              onClick={() => navigate(`/host/${localStorage.getItem('el_encargo_last_host_room')}`)}
+            >
+              Reanudar Consola de la Sala
+            </button>
+          </div>
+        )}
+
         <form onSubmit={handleCreateRoom} style={{ display: 'flex', flexDirection: 'column', gap: '1.35rem' }}>
           {/* Selector de 6, 12 o 18 rondas */}
           <div>
