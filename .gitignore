@@ -1,5 +1,6 @@
 node_modules/
 dist/
+*.tsbuildinfo
 .firebase/
 firebase-debug.log*
 database-debug.log*
