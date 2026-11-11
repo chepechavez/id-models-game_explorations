@@ -277,8 +277,15 @@ export const HostSetupView: React.FC<HostSetupViewProps> = ({ cases }) => {
             onClick={() => {
               const nextLocal = mode !== 'local-broadcast';
               setForceLocalMode(nextLocal);
-              setMode(getActiveBackendMode());
-              setError(null);
+              const updated = getActiveBackendMode();
+              setMode(updated);
+              if (!nextLocal && updated === 'local-broadcast') {
+                setError(
+                  'No se encontraron las variables VITE_FIREBASE_* en este build. Verifica las variables del repositorio en GitHub Actions o tu archivo .env.local.'
+                );
+              } else {
+                setError(null);
+              }
             }}
           >
             {mode === 'local-broadcast'

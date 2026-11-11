@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams, Link } from 'react-router-dom';
 import { joinRoom } from '../game/roomApi';
 import { normalizeRoomCode } from '../game/roomCode';
-import { getActiveBackendMode } from '../firebase';
+import { getActiveBackendMode, setForceLocalMode } from '../firebase';
 
 const LAST_JOIN_KEY = 'el_encargo_last_join_v1';
 
@@ -15,8 +15,10 @@ export const JoinView: React.FC = () => {
   const [name, setName] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  const [backendMode, setBackendMode] = useState(() => getActiveBackendMode());
 
   useEffect(() => {
+    setBackendMode(getActiveBackendMode());
     try {
       const saved = localStorage.getItem(LAST_JOIN_KEY);
       if (saved) {
@@ -56,8 +58,6 @@ export const JoinView: React.FC = () => {
       setSubmitting(false);
     }
   };
-
-  const backendMode = getActiveBackendMode();
 
   return (
     <main className="container-narrow">
@@ -170,7 +170,19 @@ export const JoinView: React.FC = () => {
                 : 'Sincronización Local Multi-pestaña'}
             </strong>
           </span>
-          <div style={{ display: 'flex', gap: '0.5rem' }}>
+          <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+            <button
+              type="button"
+              className="btn btn-sm"
+              onClick={() => {
+                const nextLocal = backendMode !== 'local-broadcast';
+                setForceLocalMode(nextLocal);
+                setBackendMode(getActiveBackendMode());
+                setError(null);
+              }}
+            >
+              {backendMode === 'local-broadcast' ? 'Usar Nube' : 'Usar Modo Local'}
+            </button>
             <Link to="/guia" className="btn btn-sm">
               Abrir Vademécum ID
             </Link>

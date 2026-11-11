@@ -5,6 +5,7 @@ import { CaseItem, ModelGuideItem, ModelId } from '../types';
 import { useRoom } from '../game/useRoom';
 import { useServerClock } from '../game/useServerClock';
 import { computeDecisionMap, computeLeaderboard } from '../game/analytics';
+import { getActiveBackendMode } from '../firebase';
 
 interface ScreenViewProps {
   cases: CaseItem[];
@@ -47,8 +48,10 @@ export const ScreenView: React.FC<ScreenViewProps> = ({ cases, models }) => {
     return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
   };
 
+  const backendMode = getActiveBackendMode();
+  const modeParam = backendMode === 'local-broadcast' ? 'local=1' : 'local=0';
   const baseHref = window.location.origin + window.location.pathname;
-  const joinUrl = `${baseHref}#/?code=${room.code}`;
+  const joinUrl = `${baseHref}#/?code=${room.code}&${modeParam}`;
 
   const allModelIds = models.map((m) => m.id);
   const decisionMap = computeDecisionMap(room, cases, allModelIds);

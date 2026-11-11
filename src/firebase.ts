@@ -53,6 +53,29 @@ export function setForceLocalMode(enabled: boolean): void {
   } else {
     localStorage.removeItem(FORCE_LOCAL_KEY);
   }
+  try {
+    const url = new URL(window.location.href);
+    let changed = false;
+    if (url.searchParams.has('local')) {
+      url.searchParams.delete('local');
+      changed = true;
+    }
+    if (url.hash.includes('?')) {
+      const [hashPath, hashQuery] = url.hash.split('?');
+      const hashParams = new URLSearchParams(hashQuery);
+      if (hashParams.has('local')) {
+        hashParams.delete('local');
+        const nextQuery = hashParams.toString();
+        url.hash = nextQuery ? `${hashPath}?${nextQuery}` : hashPath;
+        changed = true;
+      }
+    }
+    if (changed) {
+      window.history.replaceState({}, '', url.toString());
+    }
+  } catch {
+    // Ignore URL cleanup errors
+  }
 }
 
 export function getEnvFirebaseConfig(): FirebaseRuntimeConfig | null {

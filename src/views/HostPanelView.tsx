@@ -12,6 +12,7 @@ import {
   revealRound,
 } from '../game/roomApi';
 import { computeLeaderboard } from '../game/analytics';
+import { getActiveBackendMode } from '../firebase';
 
 interface HostPanelViewProps {
   cases: CaseItem[];
@@ -69,9 +70,11 @@ export const HostPanelView: React.FC<HostPanelViewProps> = ({ cases, models }) =
     return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
   };
 
+  const backendMode = getActiveBackendMode();
+  const modeParam = backendMode === 'local-broadcast' ? 'local=1' : 'local=0';
   const baseHref = window.location.origin + window.location.pathname;
-  const joinUrl = `${baseHref}#/?code=${room.code}`;
-  const screenUrl = `${baseHref}#/screen/${room.code}`;
+  const joinUrl = `${baseHref}#/?code=${room.code}&${modeParam}`;
+  const screenUrl = `${baseHref}#/screen/${room.code}?${modeParam}`;
 
   const handleStartFirstRound = async () => {
     const firstCase = cases.find((c) => c.id === room.config.sequence[0]);
@@ -114,6 +117,13 @@ export const HostPanelView: React.FC<HostPanelViewProps> = ({ cases, models }) =
           </span>
           <span className="badge badge-emerald mono-num" id="host-player-count">
             {playersList.length} estudiantes conectados
+          </span>
+          <span className="badge badge-sky mono-num" id="host-sync-mode-badge">
+            {backendMode === 'firebase-cloud'
+              ? '☁️ Sincronización en la Nube'
+              : backendMode === 'firebase-emulator'
+              ? '🧪 Emulador Firebase'
+              : '💻 Modo Ensayo Local'}
           </span>
         </div>
 
