@@ -1,0 +1,40 @@
+{
+  "name": "el-encargo-id-models",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "El Encargo — Simulador de toma de decisiones sobre modelos de diseño instruccional en tiempo real",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "validate:content": "tsx scripts/validate-content.ts",
+    "test": "vitest run tests/unit",
+    "test:watch": "vitest tests/unit",
+    "test:rules": "firebase emulators:exec --only auth,database --project demo-el-encargo \"vitest run tests/rules.test.ts\"",
+    "test:e2e": "playwright test"
+  },
+  "dependencies": {
+    "firebase": "^11.0.2",
+    "qrcode.react": "^4.1.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.28.0"
+  },
+  "devDependencies": {
+    "@firebase/rules-unit-testing": "^4.0.0",
+    "@playwright/test": "^1.49.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.1.0",
+    "@types/node": "^22.9.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "firebase-tools": "^13.24.0",
+    "jsdom": "^25.0.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3",
+    "vite": "^6.0.1",
+    "vitest": "^2.1.6"
+  }
+}

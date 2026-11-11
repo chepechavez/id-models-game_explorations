@@ -1,0 +1,347 @@
+[
+  {
+    "id": "action-mapping",
+    "name": "Action Mapping",
+    "shortName": "Action Mapping",
+    "author": "Cathy Moore",
+    "year": "2008 / 2017",
+    "roleLayer": "motor-pedagogico",
+    "color": "#10b981",
+    "accentBg": "rgba(16, 185, 129, 0.14)",
+    "essence": "Diseñar únicamente experiencias de decisión y práctica que muevan una métrica medible de negocio, diagnosticando primero por qué las personas no ejecutan hoy la conducta y eliminando los vertederos de información.",
+    "metaphor": "Un simulador de vuelo comercial y un escudo visual frente al experto temático: solo practicas decisiones críticas en contexto y dejas toda la información de consulta en ayudas de trabajo (job aids).",
+    "phases": [
+      "1. Definir una meta medible de negocio o desempeño organizacional.",
+      "2. Identificar acciones observables en el puesto y diagnosticar por qué no se hacen (entorno, conocimiento, habilidad o motivación), filtrando soluciones no formativas.",
+      "3. Diseñar actividades de práctica realistas centradas en decisiones con consecuencias naturales.",
+      "4. Incluir solo la información mínima indispensable (y sacar el resto a job aids).",
+      "5. Estructurar un flujo continuo de actividades (stream of activities), no una presentación."
+    ],
+    "mindset": "Consultor estratégico de rendimiento (no tomador de pedidos): cuestiona primero si el problema requiere capacitación o si basta con corregir procesos, incentivos o entregar una ayuda de trabajo (job aid).",
+    "strengths": [
+      "Erradica los vertederos de información (info-dumps) y el formato escolar 'explicar y luego evaluar'.",
+      "Conecta cada actividad directamente con un indicador medible del negocio.",
+      "Genera consenso rápido con líderes ejecutivos y expertos temáticos mediante un mapa visual."
+    ],
+    "weaknesses": [
+      "No está concebido para educación académica formal, humanidades o construcción teórica sin métrica operativa.",
+      "Exige que el cliente acepte definir indicadores observables y cuestionar solicitudes de cursos innecesarios.",
+      "Cuando una competencia requiere dominar un volumen extenso de teoría compleja, obliga a separar esa teoría en referencias externas."
+    ],
+    "useWhen": [
+      "Existe un indicador operativo o de negocio claro que debe cambiar (reducir errores, incidentes, tiempos o pérdidas).",
+      "El cliente pide 'un curso de sensibilización o teoría', pero la brecha real está en decisiones o conductas observables en el puesto.",
+      "Los trabajadores disponen de poco tiempo y necesitan practicar decisiones realistas apoyados en ayudas de trabajo."
+    ],
+    "avoidWhen": [
+      "Se trata de una asignatura universitaria o escolar orientada a comprensión conceptual profunda, pensamiento histórico o filosófico.",
+      "La competencia exige desarrollar durante meses esquemas cognitivos complejos y simultáneamente automatizar destrezas psicomotoras críticas.",
+      "El encargo busca gobernar contractualmente una fábrica multiproveedor de decenas de programas institucionales."
+    ],
+    "contextFit": {
+      "academic": "Baja (Moore advierte explícitamente que no fue diseñado para educación escolar o universitaria).",
+      "corporate": "Muy Alta.",
+      "bestFor": "Cambio de conductas en el puesto, atención al cliente, prevención de errores operativos, ventas consultivas y cumplimiento aplicado."
+    },
+    "outputArtifact": {
+      "name": "Action Map + Prototipo de Actividad + Project Outline (4 págs.)",
+      "description": "Mapa radial centrado en la meta, ramificado en acciones observables, obstáculos/job aids, actividades de decisión e información mínima, acompañado de un diagrama de análisis de problemas y un prototipo funcional."
+    },
+    "authorNote": "En Map It (2017, Cap. 6, p. 113), Cathy Moore enfatiza que analizar '¿por qué no lo están haciendo ya?' es el paso más importante: si la persona puede consultar el dato en su puesto sin riesgo, la solución es un Job Aid, no un curso.",
+    "sources": [
+      {
+        "citation": "Moore, C. (2017, pp. 5, 7–8, 113, 358)",
+        "work": "Map It: The Hands-On Guide to Strategic Training Design. Montesa Press.",
+        "verbatimQuote": "Why aren’t they doing it? You identify what makes each action hard to do, and you propose solutions connected to the causes of the problem. Those solutions might NOT include training. This is the most important step. Without this step, it isn’t action mapping."
+      }
+    ]
+  },
+  {
+    "id": "4c-id",
+    "name": "4C-ID (Four-Component Instructional Design)",
+    "shortName": "4C-ID",
+    "author": "Jeroen J. G. van Merriënboer & Paul A. Kirschner",
+    "year": "1997 / 2002 / 2024",
+    "roleLayer": "motor-pedagogico",
+    "color": "#f59e0b",
+    "accentBg": "rgba(245, 158, 11, 0.14)",
+    "essence": "Integrar y coordinar habilidades complejas (nunca fragmentarlas en partes aisladas) mediante clases de tareas completas del mundo real organizadas de simples a complejas, con alta variabilidad y andamiaje decreciente.",
+    "metaphor": "Aprender a conducir o a operar en un simulador clínico: desde el primer día enfrentas la tarea completa en condiciones seguras con apoyo del instructor (estudio de caso → tarea incompleta → tarea autónoma), escalando en complejidad.",
+    "phases": [
+      "Componente 1 — Tareas de aprendizaje (Learning Tasks): Tareas completas auténticas agrupadas en clases de tareas (Task Classes) de simples a complejas, con alta variabilidad y desvanecimiento del apoyo (scaffolding).",
+      "Componente 2 — Información de apoyo (Supportive Info): Modelos mentales del dominio y enfoques sistemáticos para resolver problemas (SAPs) para los aspectos no recurrentes; se presenta ANTES o fuera de la tarea para evitar sobrecarga.",
+      "Componente 3 — Información procedimental (Procedural / Just-in-Time Info): Reglas paso a paso ('cómo hacerlo') para aspectos recurrentes; se entrega JUSTO A TIEMPO durante la práctica y se desvanece rápido.",
+      "Componente 4 — Práctica de partes de la tarea (Part-Task Practice): Repetición intensiva solo para aspectos recurrentes críticos que exigen altísima automaticidad, introducida únicamente DESPUÉS de conocer la tarea completa."
+    ],
+    "mindset": "Ingeniero de arquitectura cognitiva holística: combate la compartimentación, la fragmentación y la paradoja de la transferencia regulando la carga intrínseca y extraña del aprendiz.",
+    "strengths": [
+      "Estándar de referencia para competencias profesionales complejas que combinan juicio bajo incertidumbre (no recurrente) y destrezas rutinarias (recurrentes).",
+      "Evita la sobrecarga de la memoria de trabajo separando la teoría compleja (Supportive Info previa) de las instrucciones paso a paso (Procedural Info justo a tiempo).",
+      "Garantiza transferencia real al puesto mediante alta variabilidad de práctica desde la primera clase de tareas."
+    ],
+    "weaknesses": [
+      "Exige programas de duración sustancial (regla de los autores: ≥ 100 horas, de varios meses a años); ineficaz en talleres o microcápsulas.",
+      "Curva técnica exigente: requiere análisis profundo de jerarquías de habilidades, modelos mentales, SAPs y reglas cognitivas.",
+      "Excesivo e innecesario cuando la tarea es un procedimiento algorítmico cerrado sin resolución de problemas ni coordinación simultánea."
+    ],
+    "useWhen": [
+      "Los profesionales conocen la teoría por separado pero colapsan en vivo al tener que coordinar múltiples variables, monitores o decisiones bajo presión.",
+      "La competencia exige combinar razonamiento diagnóstico no rutinario (aspectos no recurrentes) con maniobras rutinarias que deben volverse automáticas.",
+      "Se dispone de varios meses de desarrollo, acceso a expertos y entornos de simulación o proyectos de larga duración."
+    ],
+    "avoidWhen": [
+      "El programa es corto (menos de 100 horas de aprendizaje) o se solicita resolver una brecha puntual en pocas semanas.",
+      "La tarea es estrictamente procedimental, determinista y sin toma de decisiones abierta (como calibrar una máquina paso a paso).",
+      "El encargo consiste en administrar administrativamente la producción tercerizada de decenas de cursos heterogéneos."
+    ],
+    "contextFit": {
+      "academic": "Muy Alta (en currículos integrados por competencias, medicina, ingeniería y educación técnica superior).",
+      "corporate": "Alta (en academias técnicas críticas, centros de simulación de vuelo, cirugía, respuesta a incidentes y operaciones complejas).",
+      "bestFor": "Medicina de urgencias y cirugía, control aéreo y aviación, centros de operaciones de ciberseguridad (SOC) e ingeniería de sistemas complejos."
+    },
+    "outputArtifact": {
+      "name": "Training Blueprint 4C-ID (Plano de Entrenamiento en 10 Pasos)",
+      "description": "Matriz multidimensional que especifica las Clases de Tareas (con niveles de apoyo y orientación), la Información de Apoyo (modelos mentales y SAPs), la Información Procedimental (JIT) y la Práctica de Partes de la Tarea."
+    },
+    "authorNote": "Van Merriënboer (2019, p. 15; 2024, p. 11) corrige un error común: 4C-ID NO descompone el aprendizaje en partes aisladas; mantiene siempre la tarea completa y desaconseja usar los 10 Pasos en programas menores a 100 horas o en tareas puramente procedimentales.",
+    "sources": [
+      {
+        "citation": "van Merriënboer, Kirschner & Frèrejean (2024, pp. 11, 16–17, 28–29); van Merriënboer (2019, p. 15)",
+        "work": "Ten Steps to Complex Learning (4th ed.). Routledge.",
+        "verbatimQuote": "We recommend the Ten Steps when your instructional objective is to develop one or more complex skills requiring integrating knowledge, skills, and attitudes and coordinating constituent skills... In contrast, the Ten Steps approach can be excessive for tasks involving little problem solving, reasoning, and/or decision making... A rule-of-thumb is that complex skill development in programs shorter than 100 hours is unlikely."
+      }
+    ]
+  },
+  {
+    "id": "addie",
+    "name": "ADDIE (Paradigma de Desarrollo Instruccional)",
+    "shortName": "ADDIE",
+    "author": "Robert M. Branch (y tradición ISD / Molenda)",
+    "year": "1975 / 2009",
+    "roleLayer": "contenedor-gestion",
+    "color": "#0ea5e9",
+    "accentBg": "rgba(14, 165, 233, 0.14)",
+    "essence": "Paradigma conceptual iterativo de desarrollo de productos y gestión del ciclo de vida para episodios de aprendizaje intencional, con entregables verificables y firmas de validación por fase.",
+    "metaphor": "La arquitectura de gobernanza y la receta maestra de producción: los 5 ingredientes estructurales (Analyze, Design, Develop, Implement, Evaluate) permanecen constantes, pero sus procedimientos e iteraciones se adaptan al contexto.",
+    "phases": [
+      "1. Analyze (Analizar): Validar que la brecha se deba a falta de conocimientos/habilidades → Entregable: Analysis Summary (incluye Project Management Plan).",
+      "2. Design (Diseñar): Inventario de tareas, objetivos de desempeño, estrategia de pruebas y cálculo de ROI → Entregable: Design Brief.",
+      "3. Develop (Desarrollar): Contenido, estrategias didácticas, medios, guías del alumno/docente y revisión formativa con prueba piloto → Entregable: Learning Resources.",
+      "4. Implement (Implementar): Preparar a los instructores, a los estudiantes y el ecosistema de entrega → Entregable: Implementation Strategy.",
+      "5. Evaluate (Evaluar): Evaluación formativa transversal y sumativa en 3 niveles (percepción, aprendizaje y desempeño) → Entregable: Evaluation Plan."
+    ],
+    "mindset": "Gerente de sistemas y socio de gobernanza instruccional: coordina equipos multidisciplinarios, presupuestos, control de calidad por hitos y alineación entre el espacio de aprendizaje y el espacio de desempeño.",
+    "strengths": [
+      "Lenguaje estándar universalmente comprendido por agencias multimedia, interventorías, universidades y clientes corporativos.",
+      "Proporciona trazabilidad contractual mediante 5 entregables claros de validación antes de escalar la producción.",
+      "Su estructura cibernética original (Branch, 2009) admite iteración continua, prototipado rápido e ingeniería concurrente."
+    ],
+    "weaknesses": [
+      "Es un contenedor de ciclo de vida ('umbrella term'), no un motor pedagógico específico: por sí solo no prescribe cómo diseñar un escenario ramificado ni cómo regular la carga mental.",
+      "En organizaciones burocráticas suele distorsionarse en una cascada lineal rígida (Waterfall) que congela guiones extensos sin validación ágil.",
+      "Innecesario para el aprendizaje informal o espontáneo (tentional learning) o cuando la brecha proviene de falta de herramientas o incentivos."
+    ],
+    "useWhen": [
+      "El reto principal es gobernar, estandarizar y auditar la producción a gran escala con múltiples proveedores, células de desarrollo, diseñadores y comités de aprobación.",
+      "Se requiere trazabilidad contractual por hitos (Analysis Summary, Design Brief con ROI, Learning Resources validados en piloto, Implementation Strategy y Evaluation Plan).",
+      "Se busca un contenedor de ciclo de vida dentro del cual puedan operar motores didácticos específicos en cada asignatura o programa."
+    ],
+    "avoidWhen": [
+      "El problema del caso exige decidir la micro-arquitectura cognitiva o didáctica de una experiencia específica (p. ej., cómo estructurar una residencia quirúrgica o cómo erradicar la memorización en una cátedra).",
+      "Un stakeholder pide un curso largo para resolver un problema urgente de desempeño en puesto donde un modelo de rendimiento descartaría el contenido accesorio.",
+      "La discrepancia de desempeño se debe a falta de recursos o falta de motivación y no a una brecha real de conocimientos y habilidades."
+    ],
+    "contextFit": {
+      "academic": "Alta (en proyectos institucionales de virtualización masiva de programas y aseguramiento de calidad).",
+      "corporate": "Muy Alta (en licitaciones, fábricas de contenido e-learning, universidades corporativas y proyectos multi-país).",
+      "bestFor": "Gobernanza de macroproyectos educativos, coordinación de múltiples agencias proveedoras y estandarización institucional."
+    },
+    "outputArtifact": {
+      "name": "Los 5 Entregables de Fase ADDIE / Design Document (IDD)",
+      "description": "Conjunto trazable de 5 documentos maestros (Analysis Summary, Design Brief, Learning Resources, Implementation Strategy y Evaluation Plan) que gobiernan el alcance, presupuesto y calidad de la producción."
+    },
+    "authorNote": "Branch (2009, pp. 5, 18, 20) subraya que ADDIE es un paradigma de desarrollo de productos (no un modelo pedagógico único ni una cascada rígida) y que solo debe aplicarse cuando la brecha proviene de falta de conocimientos y habilidades.",
+    "sources": [
+      {
+        "citation": "Branch, R. M. (2009, pp. 5, 12–14, 17–18, 20, 166–168)",
+        "work": "Instructional Design: The ADDIE Approach. Springer.",
+        "verbatimQuote": "ADDIE is a product development paradigm and not a model per se... There is no single correct set of ADDIE procedures or no single correct sequence of ADDIE procedures."
+      }
+    ]
+  },
+  {
+    "id": "dick-carey",
+    "name": "Modelo de Enfoque de Sistemas (Dick & Carey)",
+    "shortName": "Dick & Carey",
+    "author": "Walter Dick, Lou Carey & James O. Carey",
+    "year": "1978 / 2015 (8.ª ed.)",
+    "roleLayer": "motor-pedagogico",
+    "color": "#14b8a6",
+    "accentBg": "rgba(20, 184, 166, 0.14)",
+    "essence": "Enfoque sistémico y empírico de raíz cognitivista (basado en Gagné y con apertura constructivista) donde el análisis jerárquico de habilidades subordinadas, los objetivos de desempeño y las pruebas referidas a criterio guardan congruencia milimétrica.",
+    "metaphor": "Un sistema cibernético regulado por termostato y protocolo clínico de precisión: cada habilidad subordinada se conecta con su objetivo y su reactivo diagnóstico para localizar empíricamente dónde falló la instrucción (nunca 'culpar al alumno').",
+    "phases": [
+      "1. Identificar la meta instruccional (a partir de evaluación de necesidades).",
+      "2. Realizar el análisis instruccional (jerárquico, procedimental o de clúster) y delimitar las conductas de entrada (Entry Skills Line) [en paralelo con 3].",
+      "3. Analizar a los aprendices y los contextos (contexto de aprendizaje y contexto de transferencia) [en paralelo con 2].",
+      "4. Redactar objetivos de desempeño (condición, conducta y criterio).",
+      "5. Desarrollar instrumentos de evaluación referidos a criterio (pretest, práctica y postest alineados a cada subhabilidad).",
+      "6. Desarrollar la estrategia instruccional (los 5 componentes de aprendizaje y motivación ARCS).",
+      "7. Desarrollar y seleccionar los materiales instruccionales.",
+      "8. Diseñar y ejecutar la evaluación formativa (1-a-1, grupo pequeño y prueba de campo).",
+      "9. Revisar la instrucción (nodo transversal que retroalimenta todos los pasos previos según tablas Ítem-por-Objetivo).",
+      "10. Diseñar y ejecutar la evaluación sumativa (externa al ciclo de diseño)."
+    ],
+    "mindset": "Arquitecto de sistemas e ingeniero empírico-cognitivo: exige identificar exactamente qué debe saber hacer el estudiante paso a paso ('nada más y nada menos') y verificar cada eslabón con pruebas referidas a criterio.",
+    "strengths": [
+      "Congruencia y trazabilidad total entre subhabilidades, objetivos y reactivos de prueba mediante el Design Evaluation Chart.",
+      "Diagnóstico empírico preciso: si el estudiante falla la meta terminal, la tabla Ítem-por-Objetivo revela exactamente en qué habilidad subordinada se rompió la cadena.",
+      "Altísimo retorno de inversión en certificaciones técnicas estandarizadas, aviación, defensa, industria regulada y educación basada en estándares replicables."
+    ],
+    "weaknesses": [
+      "Demanda un alto costo en tiempo, esfuerzo y nivel de detalle analítico; los propios autores advierten que un docente no puede aplicar los 10 pasos para su clase diaria.",
+      "Cuando lo que se busca es explorar preguntas abiertas o construir un prototipo rápido a partir de un caso completo desde el día 1, su análisis previo de prerrequisitos retrasa la inmersión.",
+      "Exige ejecutar evaluaciones formativas formales (1-a-1, grupo pequeño y campo) para que el sistema cumpla su promesa empírica."
+    ],
+    "useWhen": [
+      "Se requiere certificar el dominio riguroso de procedimientos o habilidades jerárquicas donde omitir un prerrequisito o paso genera fallas críticas o riesgos de seguridad.",
+      "Es indispensable contar con pruebas referidas a criterio que diagnostiquen con exactitud qué eslabón o habilidad subordinada no fue dominada por el aprendiz.",
+      "La instrucción se replicará a escala en múltiples cohortes (industria, fuerzas armadas, certificaciones técnicas o currículos basados en estándares)."
+    ],
+    "avoidWhen": [
+      "El docente tiene poco tiempo para rediseñar una asignatura y busca centrar el curso en debates interpretativos y preguntas esenciales abiertas.",
+      "El cliente pide un bootcamp práctico donde los participantes resuelvan problemas holísticos desde la primera hora sin pasar por una secuencia de prerrequisitos.",
+      "Se necesita una intervención ágil en pocas semanas para corregir 2 o 3 hábitos puntuales en el puesto de trabajo."
+    ],
+    "contextFit": {
+      "academic": "Alta (en currículos basados en estándares y programas técnicos estructurados).",
+      "corporate": "Muy Alta (Dick, Carey & Carey, 2015, p. 9 destacan que tiene aún más aplicaciones en industria, gobierno, ONG y fuerzas armadas que en la escuela).",
+      "bestFor": "Certificaciones técnicas reguladas, mantenimiento aeronáutico y energético, protocolos operativos de seguridad y programas replicables basados en criterios."
+    },
+    "outputArtifact": {
+      "name": "Instructional Analysis Diagram + Design Evaluation Chart",
+      "description": "Diagrama de análisis jerárquico/procedimental (con línea punteada de Entry Skills), tabla de congruencia (Subhabilidad ↔ Objetivo ↔ Reactivo de Criterio) y matriz empírica Ítem-por-Objetivo."
+    },
+    "authorNote": "Dick, Carey & Carey (2015, pp. 3–4, 9) corrigen dos mitos frecuentes: su modelo no es conductista puro (es predominantemente cognitivista e incorpora ambientes constructivistas para problemas mal definidos) y su uso en la industria y el sector corporativo es altísimo.",
+    "sources": [
+      {
+        "citation": "Dick, Carey & Carey (2015, pp. 3–4, 6–10, 62–67, 140, 155)",
+        "work": "The Systematic Design of Instruction (8th ed.). Pearson.",
+        "verbatimQuote": "The whole point of using the hierarchical approach is to identify just what the learner must know to be successful—nothing more, and nothing less... If a student fails to perform the terminal objective, the designer should be able to identify where in the learning process the student began not to understand the instruction."
+      }
+    ]
+  },
+  {
+    "id": "pebble-in-the-pond",
+    "name": "Pebble-in-the-Pond (First Principles of Instruction)",
+    "shortName": "Pebble in the Pond",
+    "author": "M. David Merrill",
+    "year": "2002 / 2013 / 2017",
+    "roleLayer": "motor-pedagogico",
+    "color": "#f97316",
+    "accentBg": "rgba(249, 115, 22, 0.14)",
+    "essence": "Modelo de diseño 'primero el contenido' (content-first) y centrado en problemas: arroja al entorno un problema real completo (la piedra) y construye directamente un prototipo funcional a través de 6 ondas concéntricas.",
+    "metaphor": "Arrojar una piedra en un estanque: la piedra es una instancia real y completa del problema que el alumno debe resolver, y las 6 ondas concéntricas expanden la progresión de problemas, las habilidades componentes y el coaching decreciente.",
+    "phases": [
+      "Onda 1 — Diseñar un Problema (Problem Prototype): Especificar una instancia real de un problema completo y prototipar su demostración y aplicación.",
+      "Onda 2 — Diseñar una Progresión de Problemas (Progression): Secuenciar instancias completas de complejidad creciente y mapear la Component Skills Matrix.",
+      "Onda 3 — Diseñar la Instrucción de Habilidades Componentes (Component Skills): Cruzar en la Instructional Event Table la demostración (Tell/Show) y aplicación (Do) de cada componente en contexto.",
+      "Onda 4 — Mejorar las Estrategias (Enhance Strategies): Añadir marcos estructurales (activación, guía, coaching gradual, reflexión) e interacción entre pares.",
+      "Onda 5 — Finalizar el Diseño Instruccional (Finalize Design): Auditar con el e3 Course Critique Checklist y cerrar navegación, interfaz y materiales.",
+      "Onda 6 — Diseñar Evaluación y Revisión (Evaluation): Integrar captura de datos en la aplicación de problemas nuevos y ejecutar evaluación formativa sobre el prototipo."
+    ],
+    "mindset": "Arquitecto centrando en problemas ('Show-me / Do-it' en vez de 'Tell-me'): trabaja directamente con representaciones reales del contenido en un prototipo funcional y rechaza enseñar componentes sueltos bajo la promesa de 'más adelante verán para qué sirve'.",
+    "strengths": [
+      "Operationaliza directamente los 5 Primeros Principios de la Instrucción (Centrado en problemas, Activación, Demostración, Aplicación e Integración).",
+      "Comprime el análisis de metas, objetivos y medios en la creación directa de un Prototipo Funcional, evitando los errores de traducción de los documentos abstractos.",
+      "Eleva la motivación desde el día 1 porque el aprendiz ve y resuelve versiones completas del problema real desde la primera sesión."
+    ],
+    "weaknesses": [
+      "Asume que el análisis previo (front-end analysis) ya demostró que el problema requiere instrucción; no sirve para filtrar problemas de procesos o incentivos.",
+      "Es un modelo de diseño (termina en el prototipo funcional validado), por lo que no abarca la gestión de producción masiva ni la implementación organizacional.",
+      "Choca con asignaturas cuyos sílabos obligan a cubrir capítulos teóricos aislados sin una clase de problemas completos que los articule."
+    ],
+    "useWhen": [
+      "Los participantes rechazan semanas de teoría previa desconectada y necesitan resolver una progresión de problemas o proyectos reales cada vez más complejos desde el primer día.",
+      "Se cuenta con expertos capaces de aportar casos reales completos (condiciones, pasos y consecuencias) para modelar demostraciones ('Show-me') antes de que el alumno aplique ('Do-it').",
+      "Se busca comprimir la brecha entre diseño y desarrollo construyendo directamente un Prototipo Funcional apoyado en la Component Skills Matrix."
+    ],
+    "avoidWhen": [
+      "No se ha hecho un análisis previo para saber si la caída de un indicador corporativo requiere realmente capacitación o solo una ayuda de trabajo rápida.",
+      "La tarea es una secuencia normativa única e invariable de 100 pasos donde no existen instancias divergentes de un problema sino un único protocolo rígido.",
+      "El objetivo es gobernar administrativamente contratos, proveedores externos y actas de fábrica multimedia a escala institucional."
+    ],
+    "contextFit": {
+      "academic": "Alta (en posgrados aplicados, ingeniería, salud pública y aprendizaje basado en problemas o retos).",
+      "corporate": "Alta (validado empíricamente por Merrill en programas corporativos de TI, software, liderazgo y resolución de fallas operativas).",
+      "bestFor": "Bootcamps profesionales, especializaciones aplicadas, resolución de contingencias técnicas y cursos donde la teoría solo debe aparecer al servicio de una progresión de problemas."
+    },
+    "outputArtifact": {
+      "name": "Prototipo Funcional + Component Skills Matrix + Instructional Event Table",
+      "description": "Prototipo interactivo funcional de la progresión de problemas (desde el problema inicial hasta el más complejo), respaldado por la matriz de habilidades componentes, la tabla de eventos (Tell/Show/Do) y la auditoría e3."
+    },
+    "authorNote": "Merrill (2013, Cap. 11, pp. 252, 269–270) precisa que Pebble-in-the-Pond consta de 6 ondas exactas y que reduce tiempos no por omitir el rigor analítico, sino por reemplazar el documento abstracto de diseño por un Prototipo Funcional ('content-first').",
+    "sources": [
+      {
+        "citation": "Merrill, M. D. (2002, pp. 44–45; 2013, pp. 252–253, 269–270)",
+        "work": "First Principles of Instruction: Assessing and Designing Effective, Efficient, and Engaging Instruction. Pfeiffer / Wiley.",
+        "verbatimQuote": "The Pebble approach compresses steps in the ISD process by moving directly to the development of a functional prototype of the actual instructional strategy, subsuming goal analysis, performance objectives, and media selection into a combined instructional design activity."
+      }
+    ]
+  },
+  {
+    "id": "backward-design",
+    "name": "Backward Design / Understanding by Design (UbD)",
+    "shortName": "Backward Design",
+    "author": "Grant Wiggins & Jay McTighe",
+    "year": "1998 / 2005 / 2012",
+    "roleLayer": "motor-pedagogico",
+    "color": "#f43f5e",
+    "accentBg": "rgba(244, 63, 94, 0.14)",
+    "essence": "Diseñar unidades curriculares en sentido inverso: definir primero las metas de transferencia y comprensión duradera (Etapa 1) y luego las tareas auténticas de evaluación que servirán como prueba (Etapa 2), antes de planificar actividades o lecturas (Etapa 3).",
+    "metaphor": "Planificar un viaje fijando primero el destino cultural y construir un álbum fotográfico de evidencias (no una foto instantánea aislada): pensar como un jurado judicial que exige pruebas irrebatibles de comprensión antes de armar el itinerario de clases.",
+    "phases": [
+      "Etapa 1 — Identificar los Resultados Deseados (T-M-A): Metas de Transferencia autónoma (T), Construcción de Significado mediante Grandes Ideas y Preguntas Esenciales (M), y Adquisición de conocimientos y habilidades (A).",
+      "Etapa 2 — Determinar la Evidencia Aceptable: Diseñar Tareas de Desempeño auténticas (estructuradas con GRASPS y evaluadas según las 6 Facetas de la Comprensión) complementadas con Otra Evidencia.",
+      "Etapa 3 — Planificar las Experiencias de Aprendizaje y la Instrucción: Secuenciar eventos codificados por propósito (A-M-T) y verificados con los criterios WHERETO."
+    ],
+    "mindset": "Evaluador y Juez de Evidencia ('Think like an assessor, not a teacher'): se rehúsa a elegir lecturas o dinámicas atractivas hasta no haber definido qué desempeño auténtico demostrará que el estudiante comprendió y puede transferir.",
+    "strengths": [
+      "Erradica los 'Pecados Gemelos' (Twin Sins) de la enseñanza tradicional: el diseño orientado a actividades sin propósito intelectual ('hands-on without being minds-on') y la cobertura superficial del temario ('teaching by mentioning it').",
+      "Garantiza coherencia total entre las Grandes Ideas, las Preguntas Esenciales, las rúbricas de evaluación auténtica y las sesiones de clase.",
+      "Operacionaliza la comprensión profunda a través de las 6 Facetas (Explicar, Interpretar, Aplicar, Tener Perspectiva, Empatizar y Autoconocimiento)."
+    ],
+    "weaknesses": [
+      "No debe prescribirse para lecciones sueltas de una sola sesión ni para microcápsulas rápidas (los autores recalcan que la unidad multi-lección es su unidad mínima de diseño).",
+      "Exige tiempo de diseño colegiado y pericia docente para redactar preguntas esenciales genuinas y rúbricas de transferencia.",
+      "No es un modelo de consultoría de rendimiento corporativo inmediato ni prescribe el entrenamiento psicomotor de partes de tarea."
+    ],
+    "useWhen": [
+      "Los estudiantes aprueban exámenes memorísticos o hacen actividades entretenidas, pero fracasan al transferir principios éticos, científicos, históricos o arquitectónicos a situaciones nuevas.",
+      "El comité curricular o el docente necesita rediseñar una asignatura o unidad multi-semana combatiendo la cobertura enciclopédica de temas.",
+      "Se requiere diseñar primero la evaluación auténtica de transferencia (con rol, audiencia, situación y criterios claros) antes de decidir qué clases o lecturas impartir."
+    ],
+    "avoidWhen": [
+      "Se trata de una intervención puntual de una sola sesión o de una alerta operativa urgente en el puesto de trabajo corporativo.",
+      "La tarea es estrictamente algorítmica y cerrada (donde no caben preguntas esenciales abiertas ni múltiples perspectivas interpretativas).",
+      "El encargo consiste en administrar la logística, licitación y fábrica multimedia de decenas de cursos con proveedores externos."
+    ],
+    "contextFit": {
+      "academic": "Muy Alta (estándar de referencia en educación universitaria, K-12, STEM, humanidades y formación docente).",
+      "corporate": "Media (valioso en escuelas de liderazgo, ética corporativa y pensamiento estratégico; inadecuado para soporte operativo rápido).",
+      "bestFor": "Rediseño de asignaturas universitarias, unidades curriculares orientadas a pensamiento crítico, dilemas éticos, arquitectura conceptual y transferencia a largo plazo."
+    },
+    "outputArtifact": {
+      "name": "Plantilla de Unidad UbD (3 Etapas: T-M-A, Tareas GRASPS y Plan WHERETO)",
+      "description": "Matriz curricular de 3 etapas que alinea Metas de Transferencia, Comprensiones y Preguntas Esenciales (Etapa 1), Tareas de Desempeño auténticas con rúbricas de las 6 Facetas (Etapa 2) y secuencia de eventos A-M-T / WHERETO (Etapa 3)."
+    },
+    "authorNote": "Wiggins & McTighe (2005, pp. 14, 16, 148; 2012, p. 7) formulan el lema 'Think like an assessor, not a teacher' para erradicar los Pecados Gemelos (cobertura superficial y activismo sin mente) y advierten que UbD aplica a unidades completas, no a lecciones aisladas.",
+    "sources": [
+      {
+        "citation": "Wiggins & McTighe (2005, pp. 14, 16, 148, 157, 197–198); McTighe & Wiggins (2012, pp. 1–7)",
+        "work": "Understanding by Design (Expanded 2nd ed.). ASCD.",
+        "verbatimQuote": "We call these the 'twin sins' of traditional design. The error of activity-oriented design might be called 'hands-on without being minds-on'... A second form of aimlessness goes by the name of 'coverage'... The mantra of this and the next chapter is to think like an assessor, not a teacher."
+      }
+    ]
+  }
+]
