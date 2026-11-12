@@ -16,7 +16,6 @@ interface PlayViewProps {
 }
 
 const NOTEBOOK_URL = 'https://notebook.google.com/notebook/e7877e8f-0636-4582-ad53-53fd68587b5e';
-const DRIVE_FOLDER_URL = 'https://drive.google.com/drive/folders/1ByUqJZhA83Wwrb_cVSfKo_hwYfqBnNLV';
 
 export const PlayView: React.FC<PlayViewProps> = ({ cases, models }) => {
   const { code } = useParams<{ code: string }>();
@@ -654,7 +653,7 @@ export const PlayView: React.FC<PlayViewProps> = ({ cases, models }) => {
                   <p style={{ color: 'var(--text-secondary)', fontSize: '0.92rem', marginTop: '0.3rem' }}>
                     Continúa tu formación y consulta las fuentes primarias de los modelos (Cathy Moore,
                     van Merriënboer, Robert Branch, Dick &amp; Carey, David Merrill y Wiggins &amp; McTighe)
-                    en el cuaderno interactivo de NotebookLM o descarga las lecturas de referencia.
+                    en el cuaderno interactivo de NotebookLM.
                   </p>
                 </div>
 
@@ -667,16 +666,6 @@ export const PlayView: React.FC<PlayViewProps> = ({ cases, models }) => {
                     style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
                   >
                     <span>📓</span> Abrir cuaderno en NotebookLM
-                  </a>
-
-                  <a
-                    href={DRIVE_FOLDER_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn"
-                    style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
-                  >
-                    <span>📁</span> Carpeta de lecturas en Drive
                   </a>
 
                   <button

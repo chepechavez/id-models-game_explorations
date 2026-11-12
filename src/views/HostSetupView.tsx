@@ -13,8 +13,8 @@ const MODEL_LABELS: Record<ModelId, { name: string; author: string; color: strin
   'action-mapping': { name: 'Action Mapping', author: 'Cathy Moore', color: '#10b981' },
   '4c-id': { name: '4C-ID', author: 'van Merriënboer & Kirschner', color: '#f59e0b' },
   addie: { name: 'ADDIE', author: 'Branch', color: '#0ea5e9' },
-  'dick-carey': { name: 'Dick & Carey', author: 'Dick, Carey & Carey', color: '#ec4899' },
-  'pebble-in-the-pond': { name: 'Pebble in the Pond', author: 'M. David Merrill', color: '#14b8a6' },
+  'dick-carey': { name: 'Dick & Carey', author: 'Dick, Carey & Carey', color: '#14b8a6' },
+  'pebble-in-the-pond': { name: 'Pebble in the Pond', author: 'M. David Merrill', color: '#f97316' },
   'backward-design': { name: 'Backward Design (UbD)', author: 'Wiggins & McTighe', color: '#8b5cf6' },
 };
 

@@ -540,7 +540,7 @@ export const ScreenView: React.FC<ScreenViewProps> = ({ cases, models }) => {
               </h2>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', marginTop: '0.35rem' }}>
                 Escanea el código QR con la cámara de tu móvil para ingresar al cuaderno de NotebookLM
-                y profundizar en las fuentes primarias de los modelos, o accede a la carpeta con las lecturas.
+                y profundizar en las fuentes primarias de los modelos.
               </p>
               <div style={{ display: 'flex', gap: '0.75rem', marginTop: '1rem', flexWrap: 'wrap' }}>
                 <a
@@ -551,33 +551,16 @@ export const ScreenView: React.FC<ScreenViewProps> = ({ cases, models }) => {
                 >
                   📓 Abrir cuaderno en NotebookLM
                 </a>
-                <a
-                  href="https://drive.google.com/drive/folders/1ByUqJZhA83Wwrb_cVSfKo_hwYfqBnNLV"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn"
-                >
-                  📁 Carpeta de lecturas en Drive
-                </a>
               </div>
             </div>
 
             <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
               <div style={{ textAlign: 'center' }}>
-                <div style={{ background: '#ffffff', padding: '0.65rem', borderRadius: '10px', display: 'inline-flex' }}>
-                  <QRCodeSVG value="https://notebook.google.com/notebook/e7877e8f-0636-4582-ad53-53fd68587b5e" size={128} />
+                <div style={{ background: '#ffffff', padding: '0.75rem', borderRadius: '12px', display: 'inline-flex' }}>
+                  <QRCodeSVG value="https://notebook.google.com/notebook/e7877e8f-0636-4582-ad53-53fd68587b5e" size={144} />
                 </div>
-                <div style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--text-secondary)', marginTop: '0.4rem' }}>
+                <div style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-secondary)', marginTop: '0.45rem' }}>
                   QR NotebookLM
-                </div>
-              </div>
-
-              <div style={{ textAlign: 'center' }}>
-                <div style={{ background: '#ffffff', padding: '0.65rem', borderRadius: '10px', display: 'inline-flex' }}>
-                  <QRCodeSVG value="https://drive.google.com/drive/folders/1ByUqJZhA83Wwrb_cVSfKo_hwYfqBnNLV" size={128} />
-                </div>
-                <div style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--text-secondary)', marginTop: '0.4rem' }}>
-                  QR Lecturas Drive
                 </div>
               </div>
             </div>

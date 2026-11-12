@@ -449,10 +449,10 @@ export const HostPanelView: React.FC<HostPanelViewProps> = ({ cases, models }) =
           >
             <span className="kicker">Recursos de cátedra</span>
             <h4 style={{ fontSize: '1rem', margin: 0 }}>
-              Cuaderno NotebookLM y lecturas
+              Cuaderno NotebookLM
             </h4>
             <p style={{ fontSize: '0.82rem', color: 'var(--text-secondary)' }}>
-              Comparte el enlace al cuaderno de NotebookLM y las lecturas con tus estudiantes:
+              Comparte el enlace al cuaderno de NotebookLM con tus estudiantes:
             </p>
             <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
               <a
@@ -462,14 +462,6 @@ export const HostPanelView: React.FC<HostPanelViewProps> = ({ cases, models }) =
                 className="btn btn-sm btn-sky"
               >
                 📓 Abrir NotebookLM
-              </a>
-              <a
-                href="https://drive.google.com/drive/folders/1ByUqJZhA83Wwrb_cVSfKo_hwYfqBnNLV"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-sm"
-              >
-                📁 Carpeta de lecturas
               </a>
             </div>
           </section>
