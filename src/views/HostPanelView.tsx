@@ -382,6 +382,7 @@ export const HostPanelView: React.FC<HostPanelViewProps> = ({ cases, models }) =
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.45rem' }}>
                 {leaderboard.map((p) => {
                   const hasAnswered = Boolean(roundAnswers[p.uid]);
+                  const delta = roundResult?.playerDeltas?.[p.uid];
                   return (
                     <div
                       key={p.uid}
@@ -395,9 +396,30 @@ export const HostPanelView: React.FC<HostPanelViewProps> = ({ cases, models }) =
                         fontSize: '0.88rem',
                       }}
                     >
-                      <span>
-                        <strong className="mono-num">#{p.rank}</strong> {p.name}
-                      </span>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                        <strong className="mono-num">#{p.rank}</strong>
+                        <span>{p.name}</span>
+                        {p.streak >= 2 && (
+                          <span className="badge badge-streak" style={{ fontSize: '0.74rem', padding: '0.1rem 0.35rem' }}>
+                            {p.streak >= 5 ? '⚡' : '🔥'} x{p.streak}
+                          </span>
+                        )}
+                        {delta?.rankDelta !== undefined && (
+                          delta.rankDelta > 0 ? (
+                            <span className="badge badge-rank-up" style={{ fontSize: '0.7rem', padding: '0.05rem 0.3rem' }}>
+                              ▲ +{delta.rankDelta}
+                            </span>
+                          ) : delta.rankDelta < 0 ? (
+                            <span className="badge badge-rank-down" style={{ fontSize: '0.7rem', padding: '0.05rem 0.3rem' }}>
+                              ▼ {delta.rankDelta}
+                            </span>
+                          ) : (
+                            <span className="badge badge-rank-same" style={{ fontSize: '0.7rem', padding: '0.05rem 0.3rem' }}>
+                              =
+                            </span>
+                          )
+                        )}
+                      </div>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                         {room.state.phase !== 'lobby' && (
                           <span className={`badge ${hasAnswered ? 'badge-emerald' : ''}`}>
@@ -413,6 +435,43 @@ export const HostPanelView: React.FC<HostPanelViewProps> = ({ cases, models }) =
                 })}
               </div>
             )}
+          </section>
+
+          {/* Recursos de profundización para compartir */}
+          <section
+            className="surface-card"
+            style={{
+              borderTop: '3px solid var(--accent-sky)',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '0.65rem',
+            }}
+          >
+            <span className="kicker">Recursos de cátedra</span>
+            <h4 style={{ fontSize: '1rem', margin: 0 }}>
+              Cuaderno NotebookLM y lecturas
+            </h4>
+            <p style={{ fontSize: '0.82rem', color: 'var(--text-secondary)' }}>
+              Comparte el enlace al cuaderno de NotebookLM y las lecturas con tus estudiantes:
+            </p>
+            <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+              <a
+                href="https://notebook.google.com/notebook/e7877e8f-0636-4582-ad53-53fd68587b5e"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-sm btn-sky"
+              >
+                📓 Abrir NotebookLM
+              </a>
+              <a
+                href="https://drive.google.com/drive/folders/1ByUqJZhA83Wwrb_cVSfKo_hwYfqBnNLV"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-sm"
+              >
+                📁 Carpeta de lecturas
+              </a>
+            </div>
           </section>
         </div>
       </div>

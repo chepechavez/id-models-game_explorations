@@ -59,6 +59,7 @@ export interface CreateRoomOptions {
   roundCount: SessionRoundCount;
   durations?: { 1: number; 2: number; 3: number };
   customCode?: string;
+  selectedModels?: ModelId[];
 }
 
 export async function createRoom(
@@ -72,7 +73,11 @@ export async function createRoom(
     ? normalizeRoomCode(options.customCode)
     : generateRoomCode(5);
 
-  const sequence = buildSessionSequence(allCases, options.roundCount);
+  const sequence = buildSessionSequence(
+    allCases,
+    options.roundCount,
+    options.selectedModels
+  );
   const durations = options.durations ?? {
     1: 180,
     2: 240,
@@ -83,6 +88,7 @@ export async function createRoom(
     roundCount: options.roundCount,
     sequence,
     durations,
+    selectedModels: options.selectedModels,
   };
 
   const initialRoom: RoomData = {
@@ -392,6 +398,15 @@ export async function revealRound(
     }
   }
 
+  // Calcular ranking previo a la ronda
+  const prevRanks: Record<string, number> = {};
+  const sortedBefore = Object.entries(players)
+    .map(([pUid, p]) => ({ uid: pUid, score: p.score ?? 0 }))
+    .sort((a, b) => b.score - a.score);
+  sortedBefore.forEach((item, idx) => {
+    prevRanks[item.uid] = idx + 1;
+  });
+
   // Calcular puntaje para todos los jugadores registrados
   for (const [uid, player] of Object.entries(players)) {
     const ans = roundAnswers[uid];
@@ -420,6 +435,25 @@ export async function revealRound(
     multiPathUpdates[`players/${uid}/score`] = newScore;
     multiPathUpdates[`players/${uid}/streak`] = newStreak;
   }
+
+  // Calcular ranking posterior a la ronda y delta de posición
+  const sortedAfter = Object.entries(players)
+    .map(([pUid]) => ({
+      uid: pUid,
+      score: playerDeltas[pUid]?.newScore ?? (players[pUid].score ?? 0),
+    }))
+    .sort((a, b) => b.score - a.score);
+
+  sortedAfter.forEach((item, idx) => {
+    const newRank = idx + 1;
+    const prevRank = prevRanks[item.uid] ?? newRank;
+    const rankDelta = prevRank - newRank; // > 0: subió posiciones; < 0: bajó
+    if (playerDeltas[item.uid]) {
+      playerDeltas[item.uid].newRank = newRank;
+      playerDeltas[item.uid].prevRank = prevRank;
+      playerDeltas[item.uid].rankDelta = rankDelta;
+    }
+  });
 
   const result: RoundResult = {
     distribution,

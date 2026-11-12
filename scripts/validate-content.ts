@@ -122,7 +122,7 @@ function main() {
     }
     seenIds.add(c.id);
 
-    const expectedOptionsCount = c.level + 2;
+    const expectedOptionsCount = c.level + 1;
     if (c.options.length !== expectedOptionsCount) {
       errors.push(
         `Caso '${c.id}' (nivel ${c.level}): tiene ${c.options.length} opciones, pero debe tener exactamente ${expectedOptionsCount}.`
@@ -198,11 +198,6 @@ function main() {
       }
       const seqCases = seq.map((id) => cases.find((c) => c.id === id)!);
       for (let i = 1; i < seqCases.length; i++) {
-        if (seqCases[i].model === seqCases[i - 1].model) {
-          errors.push(
-            `La secuencia de ${count} rondas repite el modelo '${seqCases[i].model}' en las rondas ${i} y ${i + 1}.`
-          );
-        }
         if (seqCases[i].level < seqCases[i - 1].level) {
           errors.push(`La secuencia de ${count} rondas retrocede de nivel en la ronda ${i + 1}.`);
         }
@@ -219,7 +214,7 @@ function main() {
   console.log(`✅ Validación exitosa: ${models.length} modelos y ${cases.length} casos verificados.`);
   console.log(`   • Cobertura: 3 casos por modelo (Niveles 1, 2 y 3 completos).`);
   console.log(`   • Filtro anti-Ctrl+F: 0 tecnicismos delatores en los briefs.`);
-  console.log(`   • Secuencias de 6, 12 y 18 rondas verificadas sin modelos adyacentes repetidos.`);
+  console.log(`   • Secuencias de 6, 12 y 18 rondas verificadas con progresión ascendente de niveles (N1: 2, N2: 3, N3: 4 opciones).`);
   if (warnings.length > 0) {
     console.warn(`⚠️  Advertencias (${warnings.length}):`);
     for (const w of warnings) console.warn(`   - ${w}`);

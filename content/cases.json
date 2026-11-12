@@ -13,24 +13,27 @@
       "El sistema telefónico permite dejar a la vista una guía rápida de consulta en pantalla durante las llamadas."
     ],
     "successMetric": "Aumentar en un 20 % los acuerdos de pago cumplidos en los próximos 60 días sin incrementar la duración promedio de la llamada.",
-    "options": ["backward-design", "action-mapping", "addie"],
+    "options": [
+      "action-mapping",
+      "addie"
+    ],
     "feedback": {
       "action-mapping": {
         "verdict": "correct",
-        "label": "Por qué SÍ es Action Mapping (Cathy Moore)",
+        "label": "¿Por qué SÍ es Action Mapping (Cathy Moore)?",
         "text": "Parte de una métrica operativa concreta (recuperación de cartera) y frena el pedido de un curso teórico enciclopédico. En su Paso 2 diagnostica por qué los gestores fallan hoy en la llamada, traslada los textos normativos a una ayuda visual en el puesto (job aid) y concentra los 15 minutos en simulaciones breves de decisión frente a objeciones reales.",
         "source": "Moore, C. (2017). Map It, Cap. 2 (p. 30) y Cap. 6 (pp. 113, 122).",
         "quote": "In the vast majority of training projects, we need to help people do something, not just know about something."
       },
       "backward-design": {
         "verdict": "no",
-        "label": "Por qué NO es Backward Design (Wiggins & McTighe)",
+        "label": "¿Por qué NO es Backward Design (Wiggins & McTighe)?",
         "text": "Wiggins y McTighe diseñaron su marco para unidades curriculares orientadas a grandes ideas y preguntas abiertas de reflexión a largo plazo, no para corregir microconductas de negociación telefónica ligadas a un indicador financiero inmediato.",
         "source": "Moore, C. (2017). Map It, Intro (p. 5); McTighe & Wiggins (2012, p. 7)."
       },
       "addie": {
         "verdict": "trap",
-        "label": "Trampa frecuente: Por qué NO basta con ADDIE (Branch)",
+        "label": "Trampa frecuente: ¿Por qué NO basta con ADDIE (Branch)?",
         "text": "Aceptar el pedido bajo un flujo genérico de fases corre el riesgo de producir los 8 módulos teóricos que pidió el gerente. Como advierte Moore (2017, p. 29), sin un filtro explícito de acciones observables y barreras del entorno, el equipo termina documentando contenido que no cambia la conducta en la llamada.",
         "source": "Moore, C. (2017). Map It, Cap. 2 (p. 29); Branch, R. M. (2009, pp. 12–14)."
       }
@@ -57,30 +60,34 @@
       "Los ejecutivos ya cuentan con fichas técnicas de cada póliza en su navegador."
     ],
     "successMetric": "Incrementar en al menos un 15 % la tasa de reuniones comerciales agendadas por ejecutivo en el mes posterior a la intervención.",
-    "options": ["4c-id", "action-mapping", "backward-design", "pebble-in-the-pond"],
+    "options": [
+      "action-mapping",
+      "pebble-in-the-pond",
+      "4c-id"
+    ],
     "feedback": {
       "action-mapping": {
         "verdict": "correct",
-        "label": "Por qué SÍ es Action Mapping (Cathy Moore)",
+        "label": "¿Por qué SÍ es Action Mapping (Cathy Moore)?",
         "text": "El diseñador actúa como consultor de rendimiento: descarta el diplomado de 36 horas de teoría abstracta y ancla el proyecto en la métrica del 15 % de citas agendadas. Diseña un flujo continuo de actividades donde el vendedor elige qué preguntar y cómo responder ante cierres prematuros del prospecto, usando las fichas que ya tiene en su pantalla.",
         "source": "Moore, C. (2017). Map It, Cap. 3–4 (pp. 47–80) y Cap. 12 (p. 295).",
         "quote": "Create a stream of activities, not a presentation."
       },
       "pebble-in-the-pond": {
         "verdict": "trap",
-        "label": "Trampa frecuente: Por qué NO es Pebble in the Pond (Merrill)",
+        "label": "Trampa frecuente: ¿Por qué NO es Pebble in the Pond (Merrill)?",
         "text": "Aunque el modelo de Merrill trabaja con problemas reales, asume que ya se definió un currículo de múltiples problemas escalonados y no incluye el diagnóstico de barreras operativas ni el escudo para desmontar la solicitud de un diplomado teórico innecesario.",
         "source": "Merrill, M. D. (2013). First Principles of Instruction, Cap. 11 (pp. 252–253)."
       },
       "4c-id": {
         "verdict": "no",
-        "label": "Por qué NO es 4C-ID (van Merriënboer)",
+        "label": "¿Por qué NO es 4C-ID (van Merriënboer)?",
         "text": "Van Merriënboer y Kirschner (2024, p. 11) desaconsejan su modelo para intervenciones breves menores a 100 horas: destinar meses a modelar jerarquías cognitivas para un ajuste táctico en llamadas de 45 segundos sería un sobrediseño inviable en 6 semanas.",
         "source": "van Merriënboer, Kirschner & Frèrejean (2024). Ten Steps to Complex Learning, Cap. 1 (p. 11)."
       },
       "backward-design": {
         "verdict": "no",
-        "label": "Por qué NO es Backward Design (Wiggins & McTighe)",
+        "label": "¿Por qué NO es Backward Design (Wiggins & McTighe)?",
         "text": "El propósito aquí no es explorar preguntas filosóficas sobre la persuasión humana durante un semestre académico, sino modificar decisiones conversacionales puntuales con retorno financiero directo.",
         "source": "Moore, C. (2017). Map It, Intro (p. 5)."
       }
@@ -107,36 +114,41 @@
       "Cada operador dispone de apenas 20 minutos semanales para realizar ejercicios prácticos."
     ],
     "successMetric": "Reducir en un 80 % los desbloqueos sin segundo factor ante intentos de manipulación emocional en el trimestre siguiente.",
-    "options": ["action-mapping", "dick-carey", "4c-id", "pebble-in-the-pond", "addie"],
+    "options": [
+      "action-mapping",
+      "dick-carey",
+      "4c-id",
+      "pebble-in-the-pond"
+    ],
     "feedback": {
       "action-mapping": {
         "verdict": "correct",
-        "label": "Por qué SÍ es Action Mapping (Cathy Moore)",
+        "label": "¿Por qué SÍ es Action Mapping (Cathy Moore)?",
         "text": "Es el caso ejemplar del diagrama de flujo del Capítulo 6 de Map It: separa la barrera de entorno/conocimiento (reemplazar el PDF de 90 páginas por una ayuda visual inmediata en el CRM para datos que no hay que memorizar) de la barrera emocional/habilidad (practicar en escenarios simulados cómo sostener la verificación bajo chantaje emocional), descartando por completo el examen de definiciones ISO.",
         "source": "Moore, C. (2017). Map It, Cap. 6 (pp. 113–126) y Apéndice 1.",
         "quote": "If people can follow the job aid without scratching their heads or making costly errors, they don’t need training... Just make sure the job aid is available where and when they need it."
       },
       "dick-carey": {
         "verdict": "trap",
-        "label": "Trampa frecuente: Por qué NO es Dick & Carey",
+        "label": "Trampa frecuente: ¿Por qué NO es Dick & Carey?",
         "text": "Diseñar el ciclo completo de 10 pasos con análisis jerárquico de prerrequisitos y pruebas de dominio sobre la norma ISO no corrige el obstáculo del PDF oculto en la intranet y excede el plazo de 4 semanas.",
         "source": "Dick, Carey & Carey (2015). The Systematic Design of Instruction, Cap. 1 (p. 10)."
       },
       "4c-id": {
         "verdict": "no",
-        "label": "Por qué NO es 4C-ID (van Merriënboer)",
+        "label": "¿Por qué NO es 4C-ID (van Merriënboer)?",
         "text": "No se está formando a arquitectos de ciberseguridad en un programa de más de 100 horas, sino entrenando a operadores para resistir una manipulación puntual usando una ayuda en pantalla.",
         "source": "van Merriënboer, Kirschner & Frèrejean (2024). Ten Steps to Complex Learning, Cap. 1 (p. 11)."
       },
       "pebble-in-the-pond": {
         "verdict": "no",
-        "label": "Por qué NO es Pebble in the Pond (Merrill)",
+        "label": "¿Por qué NO es Pebble in the Pond (Merrill)?",
         "text": "El modelo de Merrill asume que toda la solución es instruccional y no contempla diagnosticar qué parte del problema se resuelve rediseñando la herramienta de consulta en el puesto de trabajo.",
         "source": "Merrill, M. D. (2013). First Principles of Instruction, Cap. 11 (p. 252)."
       },
       "addie": {
         "verdict": "no",
-        "label": "Por qué NO basta con ADDIE (Branch)",
+        "label": "¿Por qué NO basta con ADDIE (Branch)?",
         "text": "Aunque Branch (2009, p. 13) reconoce las ayudas de trabajo en la fase de análisis, aquí no se requiere una estructura de gobernanza para una fábrica multiproveedor, sino un diseño táctico ágil centrado en una sola métrica de fraude.",
         "source": "Branch, R. M. (2009). Instructional Design: The ADDIE Approach, Prólogo (pp. 12–14)."
       }
@@ -163,24 +175,27 @@
       "Los ingenieros sénior pueden documentar sus estrategias de razonamiento diagnóstico y las guías de comandos rutinarios."
     ],
     "successMetric": "Lograr que los analistas contengan incidentes completos nunca antes vistos en el simulador integrando diagnóstico estratégico y ejecución técnica sin colapsar.",
-    "options": ["addie", "4c-id", "action-mapping"],
+    "options": [
+      "4c-id",
+      "action-mapping"
+    ],
     "feedback": {
       "4c-id": {
         "verdict": "correct",
-        "label": "Por qué SÍ es 4C-ID (van Merriënboer & Kirschner)",
+        "label": "¿Por qué SÍ es 4C-ID (van Merriënboer & Kirschner)?",
         "text": "El caso presenta los tres problemas clásicos que 4C-ID resuelve: compartimentación (cursos sueltos de redes y criptografía), fragmentación e incapacidad de transferencia bajo presión. En un programa de 160 horas, el Plano 4C-ID organiza Clases de Tareas completas en el simulador con apoyo decreciente, entrega Información de Apoyo (modelos mentales y estrategias sistemáticas SAP) ANTES de cada clase de tarea, provee Información Procedimental justo a tiempo para pasos rutinarios y añade Práctica de Partes de Tarea para automatizar comandos críticos.",
         "source": "van Merriënboer, Kirschner & Frèrejean (2024). Ten Steps to Complex Learning, Cap. 1 (pp. 5–11) y Cap. 2 (pp. 16–17, 28–29).",
         "quote": "We recommend the Ten Steps when your instructional objective is to develop one or more complex skills requiring integrating knowledge, skills, and attitudes and coordinating constituent skills."
       },
       "action-mapping": {
         "verdict": "trap",
-        "label": "Trampa frecuente: Por qué NO es Action Mapping (Cathy Moore)",
+        "label": "Trampa frecuente: ¿Por qué NO es Action Mapping (Cathy Moore)?",
         "text": "Diagnosticar y contener un ciberataque multifactorial en vivo no es una microconducta puntual que se resuelva podando la teoría; exige construir modelos mentales profundos del sistema (Supportive Information) y automatizar rutinas para liberar memoria de trabajo.",
         "source": "Moore, C. (2017). Map It, Cap. 12 (p. 322); van Merriënboer et al. (2024, pp. 16–17)."
       },
       "addie": {
         "verdict": "no",
-        "label": "Por qué NO basta con ADDIE (Branch)",
+        "label": "¿Por qué NO basta con ADDIE (Branch)?",
         "text": "ADDIE permite organizar las fases del proyecto, pero no ofrece los principios de arquitectura cognitiva para separar los aspectos no recurrentes (diagnóstico bajo incertidumbre) de los aspectos recurrentes (comandos que exigen automaticidad).",
         "source": "Branch, R. M. (2009, p. 5); van Merriënboer (2019, p. 15)."
       }
@@ -207,30 +222,34 @@
       "Es indispensable que el residente enfrente casos clínicos integrales desde la primera semana sin dividir el curso en módulos aislados de farmacología, equipos y liderazgo."
     ],
     "successMetric": "Transferencia verificada en guardia real: coordinar simultáneamente el razonamiento diagnóstico ante cuadros atípicos y la operación fluida del soporte vital bajo presión.",
-    "options": ["dick-carey", "4c-id", "pebble-in-the-pond", "backward-design"],
+    "options": [
+      "4c-id",
+      "pebble-in-the-pond",
+      "dick-carey"
+    ],
     "feedback": {
       "4c-id": {
         "verdict": "correct",
-        "label": "Por qué SÍ es 4C-ID (van Merriënboer & Kirschner)",
+        "label": "¿Por qué SÍ es 4C-ID (van Merriënboer & Kirschner)?",
         "text": "El síntoma central es la colisión en la memoria de trabajo entre habilidades no recurrentes (diagnóstico clínico de cuadros atípicos mediante esquemas mentales y SAPs) y habilidades recurrentes (programar el ventilador mecánico sin titubear). 4C-ID resuelve esta tensión combinando Clases de Tareas completas con estudios de caso y problemas de completamiento, Información de Apoyo previa a la guardia simulada, instrucciones JIT durante la maniobra y práctica repetitiva de partes solo después de introducir el caso completo.",
         "source": "van Merriënboer, Kirschner & Frèrejean (2024). Ten Steps to Complex Learning, Cap. 2 (Box 2.1, pp. 27–30).",
         "quote": "Part-task practice typically provides huge amounts of repetitive practice but only starts after the routine aspect has been introduced in the context of a whole, meaningful learning task."
       },
       "pebble-in-the-pond": {
         "verdict": "trap",
-        "label": "Trampa frecuente: Por qué NO basta con Pebble in the Pond (Merrill)",
+        "label": "Trampa frecuente: ¿Por qué NO basta con Pebble in the Pond (Merrill)?",
         "text": "Aunque Merrill también parte de problemas completos escalonados, no diferencia formalmente el diseño de la Información de Apoyo (presentada fuera de la tarea por su alta interactividad de elementos) frente a la Información Procedimental JIT y la Práctica de Partes de la Tarea para automatizar destrezas rutinarias bajo estrés extremo.",
         "source": "van Merriënboer, Kirschner & Frèrejean (2024, pp. 28–29); Merrill (2013, p. 252)."
       },
       "dick-carey": {
         "verdict": "no",
-        "label": "Por qué NO es Dick & Carey",
+        "label": "¿Por qué NO es Dick & Carey?",
         "text": "Un análisis jerárquico tradicional que obligue a dominar cada subhabilidad por separado antes de enfrentar al paciente integral contradice la necesidad de coordinar todas las habilidades constitutivas desde la primera clase de tareas.",
         "source": "van Merriënboer (2019, p. 15); Dick, Carey & Carey (2015, p. 62)."
       },
       "backward-design": {
         "verdict": "no",
-        "label": "Por qué NO es Backward Design (Wiggins & McTighe)",
+        "label": "¿Por qué NO es Backward Design (Wiggins & McTighe)?",
         "text": "UbD ayuda a definir rúbricas de comprensión general, pero carece de la ingeniería cognitiva para graduar clases de tareas con problemas de completamiento, desvanecer guías procedimentales y automatizar rutinas clínicas.",
         "source": "Wiggins & McTighe (2005, p. 14); van Merriënboer et al. (2024, pp. 16–17)."
       }
@@ -257,18 +276,23 @@
       "El nuevo currículo prohíbe iniciar con meses de ejercicios mecánicos descontextualizados antes de comprender la intervención quirúrgica integral."
     ],
     "successMetric": "Lograr que los residentes resuelvan cirugías simuladas con anatomías variables (alta variabilidad de práctica) demostrando fluidez automática en la sutura y juicio clínico sólido ante complicaciones.",
-    "options": ["action-mapping", "4c-id", "dick-carey", "pebble-in-the-pond", "backward-design"],
+    "options": [
+      "4c-id",
+      "dick-carey",
+      "pebble-in-the-pond",
+      "action-mapping"
+    ],
     "feedback": {
       "4c-id": {
         "verdict": "correct",
-        "label": "Por qué SÍ es 4C-ID (van Merriënboer & Kirschner)",
+        "label": "¿Por qué SÍ es 4C-ID (van Merriënboer & Kirschner)?",
         "text": "Resuelve con precisión quirúrgica el dilema entre destrezas recurrentes (sutura bimanual que requiere Práctica de Partes de la Tarea e Información Procedimental JIT) y habilidades no recurrentes (juicio ante anatomías atípicas apoyado en modelos mentales e Información de Apoyo SAP), garantizando que la práctica repetitiva de sutura solo se active DESPUÉS de haber introducido la tarea quirúrgica completa en Clases de Tareas con alta variabilidad.",
         "source": "van Merriënboer, Kirschner & Frèrejean (2024). Ten Steps to Complex Learning, Cap. 2 (pp. 16–17) y Cap. 11 (Part-Task Practice).",
         "quote": "Part-task practice: practice items provided to help learners reach a very high level of automaticity for selected routine aspects of a task... but only starts after the routine aspect has been introduced in the context of a whole, meaningful learning task."
       },
       "dick-carey": {
         "verdict": "trap",
-        "label": "Trampa frecuente: Por qué NO es Dick & Carey",
+        "label": "Trampa frecuente: ¿Por qué NO es Dick & Carey?",
         "text": "Un diseño jerárquico tradicional enseña y evalúa primero los prerrequisitos psicomotores aislados antes de llegar a la tarea terminal, reproduciendo el error de practicar meses en cajas plásticas sin contexto y bloqueando la transferencia ante variaciones anatómicas.",
         "source": "van Merriënboer, Kirschner & Frèrejean (2024, Cap. 1, pp. 5–7); Dick, Carey & Carey (2015, p. 62)."
       },
@@ -280,13 +304,13 @@
       },
       "action-mapping": {
         "verdict": "no",
-        "label": "Por qué NO es Action Mapping (Cathy Moore)",
+        "label": "¿Por qué NO es Action Mapping (Cathy Moore)?",
         "text": "La cirugía laparoscópica es una competencia profesional de cientos de horas que exige profundos esquemas anatómicos y fisiológicos en la memoria a largo plazo, exactamente en las antípodas de una intervención rápida de oficina.",
         "source": "Moore, C. (2017). Map It, Cap. 12 (p. 322)."
       },
       "backward-design": {
         "verdict": "no",
-        "label": "Por qué NO es Backward Design (Wiggins & McTighe)",
+        "label": "¿Por qué NO es Backward Design (Wiggins & McTighe)?",
         "text": "UbD ofrece un marco excelente para la reflexión conceptual, pero no prescribe cómo secuenciar clases de tareas en simuladores hápticos ni cómo dosificar información procedimental justo a tiempo.",
         "source": "Wiggins & McTighe (2005, Cap. 1, p. 14)."
       }
@@ -313,24 +337,27 @@
       "Ningún recurso multimedia puede pasar a despliegue masivo sin haber superado una prueba piloto documentada y contar con una estrategia formal de preparación de instructores y alumnos."
     ],
     "successMetric": "Garantizar la trazabilidad contractual, el control de calidad mediante pruebas piloto y la entrega coordinada de los 15 programas dentro del presupuesto.",
-    "options": ["pebble-in-the-pond", "addie", "backward-design"],
+    "options": [
+      "addie",
+      "pebble-in-the-pond"
+    ],
     "feedback": {
       "addie": {
         "verdict": "correct",
-        "label": "Por qué SÍ es ADDIE según Robert M. Branch (2009)",
+        "label": "¿Por qué SÍ es ADDIE según Robert M. Branch (2009)?",
         "text": "Aquí el problema que plantea el cliente es de ciclo de vida, gobernanza multiproveedor y aseguramiento de calidad de productos de aprendizaje intencional. Tal como establece Branch (2009, pp. 17–18), ADDIE opera como el paradigma de desarrollo de productos que articula los 5 entregables contractuales requeridos: Analysis Summary (con Project Management Plan), Design Brief (con cálculo de ROI), Learning Resources (validados en prueba piloto), Implementation Strategy y Evaluation Plan en 3 niveles, pudiendo albergar distintos motores didácticos dentro de cada curso.",
         "source": "Branch, R. M. (2009). Instructional Design: The ADDIE Approach, Prólogo (pp. 5, 17–18, 20).",
         "quote": "ADDIE is a product development paradigm and not a model per se... It is not a specific, fully elaborated model in its own right, but rather an umbrella term that refers to a family of models that share a common underlying structure."
       },
       "pebble-in-the-pond": {
         "verdict": "trap",
-        "label": "Trampa frecuente: Por qué NO es Pebble in the Pond (Merrill)",
+        "label": "Trampa frecuente: ¿Por qué NO es Pebble in the Pond (Merrill)?",
         "text": "Merrill (2013, pp. 252–253) advierte expresamente que su modelo es un modelo de diseño que termina en el prototipo funcional y que excluye el análisis inicial organizacional, la producción multimedia a escala, la implementación con stakeholders y la evaluación sumativa.",
         "source": "Merrill, M. D. (2013). First Principles of Instruction, Cap. 11 (pp. 252–253)."
       },
       "backward-design": {
         "verdict": "no",
-        "label": "Por qué NO es Backward Design (Wiggins & McTighe)",
+        "label": "¿Por qué NO es Backward Design (Wiggins & McTighe)?",
         "text": "UbD es un marco de diseño curricular para que los docentes planifiquen unidades de comprensión profunda, no un paradigma de ingeniería de productos para gobernar agencias multimedia, pruebas piloto y contratos por fases.",
         "source": "Wiggins & McTighe (2005, Cap. 1, p. 14); Branch (2009, p. 17)."
       }
@@ -357,30 +384,34 @@
       "Dentro de cada asignatura, los diseñadores podrán usar distintas estrategias pedagógicas según la naturaleza de la materia."
     ],
     "successMetric": "Estandarizar el flujo de los 70 profesionales con entregables auditables por etapa, reduciendo el retrabajo de producción en un 50 % y asegurando el alistamiento de tutores y alumnos.",
-    "options": ["4c-id", "pebble-in-the-pond", "addie", "action-mapping"],
+    "options": [
+      "addie",
+      "4c-id",
+      "pebble-in-the-pond"
+    ],
     "feedback": {
       "addie": {
         "verdict": "correct",
-        "label": "Por qué SÍ es ADDIE en versión iterativa / concurrente (Branch, 2009)",
+        "label": "¿Por qué SÍ es ADDIE en versión iterativa / concurrente (Branch, 2009)?",
         "text": "El problema descrito es de gestión de un sistema complejo de producción educativa con 70 profesionales. Como demuestra Branch (2009, pp. 4, 17–18, 166–167), ADDIE no es una cascada rígida sino un paradigma iterativo compatible con ingeniería concurrente que fija los 5 entregables maestros (desde el Analysis Summary y el Design Brief hasta la Implementation Strategy para formar tutores y el Evaluation Plan), permitiendo que dentro de la fase Develop se apliquen las estrategias didácticas que cada curso requiera.",
         "source": "Branch, R. M. (2009). Instructional Design: The ADDIE Approach, Prólogo (pp. 4, 17–18) y Epílogo (pp. 166–167).",
         "quote": "There is no single correct set of ADDIE procedures or no single correct sequence of ADDIE procedures... Concurrent engineering becomes more practical when managing complex projects."
       },
       "4c-id": {
         "verdict": "trap",
-        "label": "Trampa frecuente: Por qué NO es 4C-ID (van Merriënboer)",
+        "label": "Trampa frecuente: ¿Por qué NO es 4C-ID (van Merriënboer)?",
         "text": "Intentar imponer los 10 Pasos de 4C-ID como único molde para 80 asignaturas universitarias heterogéneas con 35 diseñadores juniors paralizaría la operación y tampoco resuelve la gobernanza de implementación y evaluación institucional.",
         "source": "van Merriënboer, Kirschner & Frèrejean (2024). Ten Steps to Complex Learning, Cap. 1 (pp. 11–12)."
       },
       "pebble-in-the-pond": {
         "verdict": "no",
-        "label": "Por qué NO es Pebble in the Pond (Merrill)",
+        "label": "¿Por qué NO es Pebble in the Pond (Merrill)?",
         "text": "Merrill (2013, p. 253) aclara que su modelo se limita al diseño del prototipo y deja explícitamente fuera de su alcance la producción multimedia final, el alistamiento organizacional y la evaluación sumativa.",
         "source": "Merrill, M. D. (2013). First Principles of Instruction, Cap. 11 (p. 253)."
       },
       "action-mapping": {
         "verdict": "no",
-        "label": "Por qué NO es Action Mapping (Cathy Moore)",
+        "label": "¿Por qué NO es Action Mapping (Cathy Moore)?",
         "text": "Moore (2017, p. 5) advierte que Action Mapping no fue creado para la educación universitaria formal ni para coordinar fábricas curriculares de 80 asignaturas académicas.",
         "source": "Moore, C. (2017). Map It, Intro (p. 5)."
       }
@@ -407,18 +438,23 @@
       "Se exige separar rigurosamente las causas de recursos o motivación de las brechas genuinas de conocimientos y habilidades antes de diseñar."
     ],
     "successMetric": "Completar los 5 entregables auditables por fase, filtrar las intervenciones no instruccionales y certificar el impacto en los 3 niveles de evaluación.",
-    "options": ["addie", "dick-carey", "action-mapping", "4c-id", "pebble-in-the-pond"],
+    "options": [
+      "addie",
+      "dick-carey",
+      "action-mapping",
+      "4c-id"
+    ],
     "feedback": {
       "addie": {
         "verdict": "correct",
-        "label": "Por qué SÍ es ADDIE (inspirado directamente en el caso integrador de Branch, 2009)",
+        "label": "¿Por qué SÍ es ADDIE (inspirado directamente en el caso integrador de Branch, 2009)?",
         "text": "Este encargo recoge de principio a fin la arquitectura completa de Branch (2009, Prólogo pp. 12–18 y Apéndice A 'Firefighters for the Digital Age', pp. 169–174): comienza con el Partnering Process en Analyze para distinguir si la discrepancia proviene de recursos limitados, falta de motivación o falta de conocimientos/habilidades (Analysis Summary), continúa con el Design Brief (con cálculo de ROI), el desarrollo validado en prueba piloto (Learning Resources), el plan de preparación de instructores y alumnos (Implementation Strategy) y cierra con el Evaluation Plan en los Niveles 1, 2 y 3.",
         "source": "Branch, R. M. (2009). Instructional Design: The ADDIE Approach, Prólogo (pp. 12–18) y Apéndice A (pp. 169–174).",
         "quote": "There are three general categories of reasons why a performance discrepancy exists: (1) limited resources, (2) lack of motivation, and (3) lack of knowledge and skill... The purpose of instruction is to close the gap in performance when it is caused by a lack of knowledge or skill."
       },
       "action-mapping": {
         "verdict": "trap",
-        "label": "Trampa frecuente: Por qué NO basta con Action Mapping (Cathy Moore)",
+        "label": "Trampa frecuente: ¿Por qué NO basta con Action Mapping (Cathy Moore)?",
         "text": "Aunque Cathy Moore también diagnostica barreras de entorno y motivación, ella misma señala (2017, p. 358) que su enfoque sustituye la documentación formal por un esquema ligero de 4 páginas y no está concebido para gestionar licitaciones estatales con 5 entregables auditables por Contraloría, planes de alistamiento de instructores regionales y cálculo formal de ROI por fase.",
         "source": "Moore, C. (2017). Map It, Cap. 14 (p. 358); Branch (2009, pp. 17–18, 76–81)."
       },
@@ -430,13 +466,13 @@
       },
       "4c-id": {
         "verdict": "no",
-        "label": "Por qué NO es 4C-ID (van Merriënboer)",
+        "label": "¿Por qué NO es 4C-ID (van Merriënboer)?",
         "text": "4C-ID diseña el plano pedagógico de competencias complejas, pero no provee los procedimientos de auditoría de causas no formativas, cálculo de ROI ni estrategia de implementación regional exigidos por la licitación.",
         "source": "van Merriënboer, Kirschner & Frèrejean (2024, Cap. 1, p. 11)."
       },
       "pebble-in-the-pond": {
         "verdict": "no",
-        "label": "Por qué NO es Pebble in the Pond (Merrill)",
+        "label": "¿Por qué NO es Pebble in the Pond (Merrill)?",
         "text": "Merrill (2013, p. 252) declara explícitamente que su modelo asume que el análisis previo ya determinó que la solución es instruccional y que excluye las etapas de implementación y evaluación sumativa.",
         "source": "Merrill, M. D. (2013). First Principles of Instruction, Cap. 11 (pp. 252–253)."
       }
@@ -463,24 +499,27 @@
       "Cada habilidad subordinada debe contar con su propio objetivo de desempeño y su reactivo de prueba referido a criterio para detectar exactamente dónde falla cada técnico."
     ],
     "successMetric": "Asegurar congruencia total entre cada habilidad subordinada y su prueba de criterio, logrando que el 100 % de los técnicos certificados ejecuten la cadena completa sin errores.",
-    "options": ["pebble-in-the-pond", "backward-design", "dick-carey"],
+    "options": [
+      "dick-carey",
+      "pebble-in-the-pond"
+    ],
     "feedback": {
       "dick-carey": {
         "verdict": "correct",
-        "label": "Por qué SÍ es el Enfoque de Sistemas de Dick & Carey (2015)",
+        "label": "¿Por qué SÍ es el Enfoque de Sistemas de Dick & Carey (2015)?",
         "text": "Este caso exige las fortalezas nucleares de Dick, Carey y Carey (2015, Caps. 4, 7 y 12): realizar un análisis instruccional jerárquico y procedimental con línea divisoria de conductas de entrada (Entry Skills Line), construir el Design Evaluation Chart que alinea cada habilidad subordinada con su objetivo y su reactivo referido a criterio, y usar la matriz Ítem-por-Objetivo en la evaluación formativa para localizar empíricamente en qué eslabón previo falló la instrucción.",
         "source": "Dick, Carey & Carey (2015). The Systematic Design of Instruction (8th ed.), Cap. 4 (pp. 62–67) y Cap. 7 (pp. 140, 155).",
         "quote": "If a student fails to perform the terminal objective, the designer should be able to identify where in the learning process the student began not to understand the instruction."
       },
       "backward-design": {
         "verdict": "no",
-        "label": "Por qué NO es Backward Design (Wiggins & McTighe)",
+        "label": "¿Por qué NO es Backward Design (Wiggins & McTighe)?",
         "text": "Desenergizar un transformador de 115 kV no admite preguntas esenciales abiertas ni múltiples interpretaciones personales; requiere precisión procedimental y verificación de cada prerrequisito subordinado.",
         "source": "Wiggins & McTighe (2005, Cap. 5); Dick, Carey & Carey (2015, p. 9)."
       },
       "pebble-in-the-pond": {
         "verdict": "trap",
-        "label": "Trampa frecuente: Por qué NO es Pebble in the Pond (Merrill)",
+        "label": "Trampa frecuente: ¿Por qué NO es Pebble in the Pond (Merrill)?",
         "text": "Merrill diseña para clases de problemas con instancias variadas donde el aprendiz aplica heurísticas a casos nuevos; aquí se requiere garantizar y auditar cada prerrequisito subordinado de un protocolo técnico regulado de alto riesgo.",
         "source": "Merrill, M. D. (2013, Cap. 11, p. 269); Dick, Carey & Carey (2015, p. 67)."
       }
@@ -507,30 +546,34 @@
       "Se requiere una tabla de evaluación del diseño que demuestre a los inspectores de aviación la congruencia exacta entre cada subhabilidad, su objetivo (condición, conducta y criterio) y sus ítems de prueba."
     ],
     "successMetric": "Aprobación regulatoria de la matriz de congruencia y validación empírica de los materiales en prueba de campo con tasas de dominio superiores al 95 % en cada objetivo subordinado.",
-    "options": ["action-mapping", "dick-carey", "4c-id", "backward-design"],
+    "options": [
+      "dick-carey",
+      "4c-id",
+      "action-mapping"
+    ],
     "feedback": {
       "dick-carey": {
         "verdict": "correct",
-        "label": "Por qué SÍ es Dick & Carey (2015)",
+        "label": "¿Por qué SÍ es Dick & Carey (2015)?",
         "text": "Reúne las tres razones fundamentales que Dick, Carey y Carey (2015, Cap. 1, p. 9) establecen para prescribir su modelo completo de 10 componentes: educación basada en estándares críticos, congruencia auditable mediante el Design Evaluation Chart (Cap. 7, Tabla 7.3) y un proceso empírico replicable a gran escala (con evaluación formativa 1-a-1, grupo pequeño y prueba de campo en los pasos 8 y 9) que amortiza con creces el tiempo invertido.",
         "source": "Dick, Carey & Carey (2015). The Systematic Design of Instruction (8th ed.), Cap. 1 (p. 9), Cap. 4 (p. 66) y Cap. 11–12.",
         "quote": "The third and perhaps most important reason for using the systems approach is that it is an empirical and replicable process... Because it can be reused with similar and scalable student audiences, it is worth the time and effort to evaluate and revise it."
       },
       "4c-id": {
         "verdict": "trap",
-        "label": "Trampa frecuente: Por qué NO es 4C-ID (van Merriënboer)",
+        "label": "Trampa frecuente: ¿Por qué NO es 4C-ID (van Merriënboer)?",
         "text": "Van Merriënboer, Kirschner y Frèrejean (2024, Cap. 1, p. 11) ponen explícitamente 'calibrar una máquina' como ejemplo de tarea procedimental con poca resolución abierta de problemas donde 4C-ID resulta excesivo.",
         "source": "van Merriënboer, Kirschner & Frèrejean (2024). Ten Steps to Complex Learning, Cap. 1 (p. 11)."
       },
       "action-mapping": {
         "verdict": "no",
-        "label": "Por qué NO es Action Mapping (Cathy Moore)",
+        "label": "¿Por qué NO es Action Mapping (Cathy Moore)?",
         "text": "Una certificación técnica aeronáutica nacional con delimitación de conductas de entrada en exámenes de admisión y validación formativa en tres fases requiere la ingeniería curricular sistemática de Dick y Carey, no un mapa rápido de oficina.",
         "source": "Dick, Carey & Carey (2015, p. 9); Moore (2017, p. 122)."
       },
       "backward-design": {
         "verdict": "no",
-        "label": "Por qué NO es Backward Design (Wiggins & McTighe)",
+        "label": "¿Por qué NO es Backward Design (Wiggins & McTighe)?",
         "text": "UbD no provee la técnica de análisis jerárquico con Entry Skills Line para separar qué evaluar en el examen de admisión frente a qué enseñar en la secuencia de subhabilidades.",
         "source": "Dick, Carey & Carey (2015, Cap. 4, pp. 65–66)."
       }
@@ -557,36 +600,41 @@
       "Los instructores necesitan tanto el diagrama jerárquico de habilidades intelectuales y psicomotoras como la tabla que cruza el rendimiento de cada estudiante en cada ítem con su habilidad subordinada correspondiente."
     ],
     "successMetric": "Identificar con exactitud empírica el porcentaje de logro en cada una de las 42 subhabilidades mediante tablas Ítem-por-Objetivo y elevar la tasa de certificación al primer intento por encima del 92 %.",
-    "options": ["backward-design", "pebble-in-the-pond", "dick-carey", "4c-id", "action-mapping"],
+    "options": [
+      "dick-carey",
+      "4c-id",
+      "backward-design",
+      "pebble-in-the-pond"
+    ],
     "feedback": {
       "dick-carey": {
         "verdict": "correct",
-        "label": "Por qué SÍ es Dick & Carey (2015)",
+        "label": "¿Por qué SÍ es Dick & Carey (2015)?",
         "text": "Responde exactamente a la arquitectura cognitiva y empírica de la 8.ª edición de Dick, Carey y Carey (2015, Caps. 1, 7, 8 y 12): desglosa la meta en un Instructional Analysis Diagram (diferenciando habilidades intelectuales, psicomotoras y conductas de entrada), construye pruebas referidas a criterio donde cada ítem se vincula a una habilidad subordinada en la tabla Ítem-por-Objetivo (Cap. 12, p. 320) para diagnosticar dónde falló la instrucción, e incluso admite estrategias constructivistas acotadas (Cap. 8, pp. 194–201) sin perder la congruencia del sistema.",
         "source": "Dick, Carey & Carey (2015). The Systematic Design of Instruction (8th ed.), Cap. 1 (pp. 3–4), Cap. 7 (pp. 140, 155), Cap. 8 (pp. 194–201) y Cap. 12 (pp. 318–322).",
         "quote": "By examining whether each item is answered correctly and linking the correct and incorrect responses to the anchor subordinate skill, the designer should be able to do exactly that."
       },
       "4c-id": {
         "verdict": "trap",
-        "label": "Trampa frecuente: Por qué NO es 4C-ID (van Merriënboer)",
+        "label": "Trampa frecuente: ¿Por qué NO es 4C-ID (van Merriënboer)?",
         "text": "4C-ID evalúa el desempeño holístico en tareas completas mediante rúbricas integradas, pero no está diseñado para generar una tabla diagnóstica Ítem-por-Objetivo sobre 42 pasos subordinados ni para trazar una línea formal de prerrequisitos trigonométricos de admisión.",
         "source": "Dick, Carey & Carey (2015, Cap. 7, p. 140); van Merriënboer et al. (2024, Cap. 3)."
       },
       "pebble-in-the-pond": {
         "verdict": "no",
-        "label": "Por qué NO es Pebble in the Pond (Merrill)",
+        "label": "¿Por qué NO es Pebble in the Pond (Merrill)?",
         "text": "El cuello de botella del Comando es la falta de diagnóstico psicométrico referido a criterio sobre prerrequisitos y subhabilidades, algo que el enfoque de prototipado de Merrill comprime y no desglosa con una Entry Skills Line.",
         "source": "Merrill, M. D. (2013, Cap. 11, p. 269); Dick, Carey & Carey (2015, p. 65)."
       },
       "backward-design": {
         "verdict": "no",
-        "label": "Por qué NO es Backward Design (Wiggins & McTighe)",
+        "label": "¿Por qué NO es Backward Design (Wiggins & McTighe)?",
         "text": "Wiggins y McTighe se centran en preguntas esenciales abiertas y en las 6 Facetas de la Comprensión, no en el análisis jerárquico de 42 subhabilidades técnicas de radar.",
         "source": "Wiggins & McTighe (2005, Cap. 4, pp. 82–104)."
       },
       "action-mapping": {
         "verdict": "no",
-        "label": "Por qué NO es Action Mapping (Cathy Moore)",
+        "label": "¿Por qué NO es Action Mapping (Cathy Moore)?",
         "text": "Operar un radar de defensa aérea con 42 pasos críticos de calibración y discriminación de ecos exige formación sistemática profunda y pruebas formales de dominio, no un taller rápido de oficina.",
         "source": "Moore, C. (2017, Cap. 6, p. 122)."
       }
@@ -613,24 +661,27 @@
       "Cada habilidad técnica debe mapearse en una matriz contra la secuencia de proyectos completos, mostrando su demostración ('Show-me') antes de pedir su aplicación ('Do-it')."
     ],
     "successMetric": "Entregar el prototipo funcional interactivo con la secuencia de proyectos completos escalonados y reducir la deserción por debajo del 10 %.",
-    "options": ["dick-carey", "pebble-in-the-pond", "backward-design"],
+    "options": [
+      "pebble-in-the-pond",
+      "dick-carey"
+    ],
     "feedback": {
       "pebble-in-the-pond": {
         "verdict": "correct",
-        "label": "Por qué SÍ es Pebble-in-the-Pond (David Merrill)",
+        "label": "¿Por qué SÍ es Pebble-in-the-Pond (David Merrill)?",
         "text": "El síntoma que describe la queja estudiantil ('más adelante verán para qué sirve') es la frase exacta con la que Merrill (2002, p. 45) retrata la instrucción centrada en temas aislados. Pebble-in-the-Pond arroja desde la Onda 1 una instancia real del problema completo, diseña en la Onda 2 la progresión de problemas con la Component Skills Matrix, cruza en la Onda 3 la demostración y aplicación en la Instructional Event Table y construye directamente un Prototipo Funcional ('content-first').",
         "source": "Merrill, M. D. (2002, pp. 44–45) y Merrill, M. D. (2013). First Principles of Instruction, Cap. 11 (pp. 252, 269–270).",
         "quote": "Problem-centered instruction is contrasted with topic-centered instruction where components of the task are taught in isolation (e.g., 'You won’t understand this now but later it will really be important to you') before introducing the real world task to the students."
       },
       "dick-carey": {
         "verdict": "trap",
-        "label": "Trampa frecuente: Por qué NO es Dick & Carey",
+        "label": "Trampa frecuente: ¿Por qué NO es Dick & Carey?",
         "text": "Un diseño jerárquico tradicional que obligue a dominar primero todos los prerrequisitos sintácticos antes de enfrentar el proyecto completo mantiene la demora en tocar problemas reales y genera documentos de especificación previos en lugar de ir directo al prototipo funcional.",
         "source": "Merrill, M. D. (2013, Cap. 11, pp. 268–270)."
       },
       "backward-design": {
         "verdict": "no",
-        "label": "Por qué NO es Backward Design (Wiggins & McTighe)",
+        "label": "¿Por qué NO es Backward Design (Wiggins & McTighe)?",
         "text": "Aunque UbD busca comprensión y transferencia, no prescribe el método de las 6 ondas concéntricas (Prototipo del Problema → Progresión → Matriz de Habilidades Componentes → Mejoras de Coaching/Pares) ni el enfoque 'primero el contenido' de Merrill.",
         "source": "Merrill, M. D. (2013, Cap. 11, p. 252); Wiggins & McTighe (2005, p. 14)."
       }
@@ -657,30 +708,34 @@
       "Se exige eliminar la brecha de interpretación entre el diseñador y los desarrolladores trabajando desde el inicio con representaciones reales del contenido."
     ],
     "successMetric": "Entregar el prototipo funcional auditado con la lista de verificación de efectividad, eficiencia y compromiso (e3), eliminando los errores de traducción a desarrollo.",
-    "options": ["pebble-in-the-pond", "dick-carey", "action-mapping", "backward-design"],
+    "options": [
+      "pebble-in-the-pond",
+      "dick-carey",
+      "action-mapping"
+    ],
     "feedback": {
       "pebble-in-the-pond": {
         "verdict": "correct",
-        "label": "Por qué SÍ es Pebble-in-the-Pond (David Merrill)",
+        "label": "¿Por qué SÍ es Pebble-in-the-Pond (David Merrill)?",
         "text": "Ataca simultáneamente los dos dolores del cliente explicados por Merrill (2013, Cap. 11, pp. 252, 269–270): reemplaza la enseñanza de capítulos aislados por una progresión de contingencias industriales completas (Ondas 1 a 3), añade coaching gradual e interacción entre pares en la Onda 4, audita el diseño con el e3 Course Critique Checklist en la Onda 5 y evita los 'errores de traducción' (*translation errors*) del documento escrito tradicional al construir directamente un Prototipo Funcional con contenido real.",
         "source": "Merrill, M. D. (2013). First Principles of Instruction, Cap. 11 (pp. 252, 269–270) y Cap. 16–17.",
         "quote": "Typically, this [traditional ISD] process produces an instructional design document. A significant problem with this approach is the number of translation errors that can occur when developing the actual instruction from the abstract design document... The Pebble model attempts to overcome this problem by using actual materials or placeholders to develop a functional prototype."
       },
       "dick-carey": {
         "verdict": "trap",
-        "label": "Trampa frecuente: Por qué NO es Dick & Carey",
+        "label": "Trampa frecuente: ¿Por qué NO es Dick & Carey?",
         "text": "Elaborar primero objetivos abstractos y especificaciones escritas antes de construir el prototipo con casos reales fue precisamente lo que produjo los errores de traducción y el retraso previo.",
         "source": "Merrill, M. D. (2013, Cap. 11, pp. 269–270)."
       },
       "action-mapping": {
         "verdict": "no",
-        "label": "Por qué NO es Action Mapping (Cathy Moore)",
+        "label": "¿Por qué NO es Action Mapping (Cathy Moore)?",
         "text": "Aquí no se trata de corregir un hábito simple de oficina en 15 minutos, sino de un programa ejecutivo de varios meses donde los participantes deben dominar e integrar modelos estadísticos, normativos y operativos a través de una progresión formal de problemas.",
         "source": "Moore, C. (2017, Cap. 12, p. 322); Merrill (2013, Cap. 14)."
       },
       "backward-design": {
         "verdict": "no",
-        "label": "Por qué NO es Backward Design (Wiggins & McTighe)",
+        "label": "¿Por qué NO es Backward Design (Wiggins & McTighe)?",
         "text": "UbD entrega una plantilla curricular de unidad en 3 etapas, pero no resuelve el problema de los errores de traducción multimedia mediante el prototipado funcional 'content-first' ni estructura la Component Skills Matrix y la Instructional Event Table de Merrill.",
         "source": "Merrill, M. D. (2013, Cap. 11, p. 270); Wiggins & McTighe (2005, p. 14)."
       }
@@ -707,36 +762,41 @@
       "Se requiere construir la matriz que mapea qué habilidades componentes (información, partes, tipos, procedimientos y procesos causales) entran en cada uno de los 5 brotes de la progresión."
     ],
     "successMetric": "Validar en pruebas formativas (uno a uno y grupo pequeño) que los estudiantes resuelven un sexto brote inédito sin apoyo del tutor integrando bioestadística, ley sanitaria y logística.",
-    "options": ["dick-carey", "pebble-in-the-pond", "action-mapping", "backward-design", "addie"],
+    "options": [
+      "pebble-in-the-pond",
+      "backward-design",
+      "dick-carey",
+      "action-mapping"
+    ],
     "feedback": {
       "pebble-in-the-pond": {
         "verdict": "correct",
-        "label": "Por qué SÍ es Pebble-in-the-Pond (David Merrill)",
+        "label": "¿Por qué SÍ es Pebble-in-the-Pond (David Merrill)?",
         "text": "Cumple al pie de la letra las 6 ondas y las condiciones de frontera definidas por Merrill (2013, Cap. 11, pp. 252–253; Caps. 13–18): el análisis previo ya está hecho y el encargo llega hasta el prototipo funcional evaluado formativamente (Onda 6); parte de un brote completo real (Onda 1), construye la progresión de 5 brotes divergentes y la Component Skills Matrix (Onda 2), diseña la demostración y aplicación de los componentes estadísticos y legales en la Instructional Event Table (Onda 3) y desvanece el coaching a lo largo de la progresión (Onda 4).",
         "source": "Merrill, M. D. (2013). First Principles of Instruction, Cap. 11 (pp. 252–253) y Caps. 14–16.",
         "quote": "The problem pebble thrown into the instructional pond is the trigger for the instructional design process... The second ripple is a progression of problems of the same type... The third ripple is the component skills required to solve this class of problems."
       },
       "backward-design": {
         "verdict": "trap",
-        "label": "Trampa frecuente: Por qué NO basta con Backward Design (Wiggins & McTighe)",
+        "label": "Trampa frecuente: ¿Por qué NO basta con Backward Design (Wiggins & McTighe)?",
         "text": "Aunque UbD define metas de transferencia y tareas de evaluación auténtica, no prescribe la ingeniería de las 6 ondas de Merrill para mapear qué componentes exactos (partes, tipos, cómo-hacer y qué-pasa) se introducen en cada versión de la progresión de brotes mediante una Component Skills Matrix.",
         "source": "Merrill, M. D. (2013, Cap. 14, pp. 317–330); Wiggins & McTighe (2005, p. 14)."
       },
       "dick-carey": {
         "verdict": "no",
-        "label": "Por qué NO es Dick & Carey",
+        "label": "¿Por qué NO es Dick & Carey?",
         "text": "El análisis jerárquico de prerrequisitos de Dick y Carey tiende a secuenciar primero las habilidades subordinadas antes de la meta terminal, que es justamente la estructura secuencial que el decano busca erradicar.",
         "source": "Merrill, M. D. (2002, p. 45; 2013, p. 268)."
       },
       "action-mapping": {
         "verdict": "no",
-        "label": "Por qué NO es Action Mapping (Cathy Moore)",
+        "label": "¿Por qué NO es Action Mapping (Cathy Moore)?",
         "text": "Esta es una especialización universitaria de posgrado en salud pública con modelado bioestadístico y epidemiológico profundo; Moore (2017, p. 5) aclara que su modelo no aplica a la educación universitaria formal.",
         "source": "Moore, C. (2017). Map It, Intro (p. 5)."
       },
       "addie": {
         "verdict": "no",
-        "label": "Por qué NO es ADDIE (Branch)",
+        "label": "¿Por qué NO es ADDIE (Branch)?",
         "text": "El caso especifica que la producción e implementación organizacional están fuera del encargo y que lo requerido es el modelo pedagógico para estructurar la progresión concéntrica de los 5 brotes.",
         "source": "Branch, R. M. (2009, p. 5); Merrill (2013, pp. 252–253)."
       }
@@ -763,24 +823,27 @@
       "El rediseño abarca las 4 unidades multi-semana del semestre."
     ],
     "successMetric": "Lograr que los estudiantes demuestren transferencia autónoma, interpretación e identificación de perspectivas históricas en desempeños auténticos evaluados con rúbricas de comprensión.",
-    "options": ["action-mapping", "backward-design", "dick-carey"],
+    "options": [
+      "backward-design",
+      "dick-carey"
+    ],
     "feedback": {
       "backward-design": {
         "verdict": "correct",
-        "label": "Por qué SÍ es Backward Design / UbD (Wiggins & McTighe)",
+        "label": "¿Por qué SÍ es Backward Design / UbD (Wiggins & McTighe)?",
         "text": "El caso retrata el segundo de los 'Pecados Gemelos' (Twin Sins) denunciados por Wiggins y McTighe (2005, pp. 16, 20): la cobertura superficial ('marching through a textbook, page by page / teaching by mentioning it'). UbD invierte el proceso en 3 etapas: define primero las metas de Transferencia, Significado (Grandes Ideas y Preguntas Esenciales) y Adquisición (Etapa 1), diseña luego las tareas auténticas de evaluación pensando como un juez de evidencia ('Think like an assessor', Etapa 2) y solo al final selecciona las lecturas y experiencias (Etapa 3).",
         "source": "Wiggins & McTighe (2005). Understanding by Design (2nd ed.), Cap. 1 (pp. 14, 16, 20) y Cap. 7 (p. 148).",
         "quote": "Coverage-based instruction amounts to the teacher merely talking, checking off topics, and moving on, irrespective of whether students understand or are confused. This approach might be termed 'teaching by mentioning it.'"
       },
       "action-mapping": {
         "verdict": "no",
-        "label": "Por qué NO es Action Mapping (Cathy Moore)",
+        "label": "¿Por qué NO es Action Mapping (Cathy Moore)?",
         "text": "Cathy Moore (2017, Intro, p. 5) advierte textualmente que su libro no trata sobre educar a estudiantes universitarios ni diseñar asignaturas académicas de humanidades, sino sobre entrenamiento corporativo ligado a métricas de negocio.",
         "source": "Moore, C. (2017). Map It, Intro (p. 5)."
       },
       "dick-carey": {
         "verdict": "trap",
-        "label": "Trampa frecuente: Por qué NO es Dick & Carey",
+        "label": "Trampa frecuente: ¿Por qué NO es Dick & Carey?",
         "text": "El problema de la cátedra no es la falta de una jerarquía de subhabilidades procedimentales cerradas, sino la ausencia de Preguntas Esenciales abiertas y de evaluación de las 6 Facetas de la Comprensión (explicar, interpretar, aplicar, tener perspectiva, empatizar y autoconocimiento).",
         "source": "Wiggins & McTighe (2005, Cap. 4, pp. 82–104); Dick, Carey & Carey (2015, p. 10)."
       }
@@ -807,30 +870,34 @@
       "Cada sesión del semestre deberá organizarse para enganchar, equipar, promover la reflexión/revisión y autoevaluar el progreso hacia esa comprensión."
     ],
     "successMetric": "Asegurar que el 100 % de las actividades de laboratorio estén subordinadas a metas explícitas de transferencia y significado, medidas en la defensa auténtica de arquitectura.",
-    "options": ["dick-carey", "action-mapping", "backward-design", "addie"],
+    "options": [
+      "backward-design",
+      "action-mapping",
+      "dick-carey"
+    ],
     "feedback": {
       "backward-design": {
         "verdict": "correct",
-        "label": "Por qué SÍ es Backward Design / UbD (Wiggins & McTighe)",
+        "label": "¿Por qué SÍ es Backward Design / UbD (Wiggins & McTighe)?",
         "text": "El caso ilustra el primero de los 'Pecados Gemelos' (Twin Sins) definidos por Wiggins y McTighe (2005, p. 16): el diseño orientado a actividades ('hands-on without being minds-on'), donde las dinámicas son divertidas pero no conducen a ninguna comprensión intelectual. La solución aplica las 3 etapas de UbD: fijar en la Etapa 1 las grandes ideas de compromiso arquitectónico, estructurar en la Etapa 2 la defensa ante la junta con los elementos de rol, audiencia y situación, y ordenar en la Etapa 3 los laboratorios para que inviten a repensar y revisar.",
         "source": "Wiggins & McTighe (2005). Understanding by Design (2nd ed.), Cap. 1 (p. 16), Cap. 7 (pp. 148, 157) y Cap. 9 (pp. 197–198).",
         "quote": "The error of activity-oriented design might be called 'hands-on without being minds-on'—engaging experiences that lead only accidentally, if at all, to insight or achievement."
       },
       "action-mapping": {
         "verdict": "trap",
-        "label": "Trampa frecuente: Por qué NO es Action Mapping (Cathy Moore)",
+        "label": "Trampa frecuente: ¿Por qué NO es Action Mapping (Cathy Moore)?",
         "text": "Aunque Action Mapping diseña actividades de decisión, está orientado a entrenamientos corporativos breves para mover un KPI de negocio, no al diseño curricular de una asignatura universitaria de 16 semanas centrada en grandes ideas y preguntas esenciales.",
         "source": "Moore, C. (2017). Map It, Intro (p. 5); McTighe & Wiggins (2012, pp. 1–4)."
       },
       "dick-carey": {
         "verdict": "no",
-        "label": "Por qué NO es Dick & Carey",
+        "label": "¿Por qué NO es Dick & Carey?",
         "text": "El fallo aquí no es la ausencia de reactivos psicométricos sobre pasos subordinados, sino la falta de diseño inverso centrado en el significado y la evaluación auténtica de criterios arquitectónicos contrapuestos.",
         "source": "Wiggins & McTighe (2005, Cap. 7, p. 148)."
       },
       "addie": {
         "verdict": "no",
-        "label": "Por qué NO basta con ADDIE (Branch)",
+        "label": "¿Por qué NO basta con ADDIE (Branch)?",
         "text": "ADDIE describe las fases administrativas del proyecto, pero no provee las herramientas curriculares de las 6 Facetas de la Comprensión ni el diseño de tareas auténticas con rol y audiencia para combatir el activismo sin propósito.",
         "source": "Branch, R. M. (2009, p. 5); Wiggins & McTighe (2005, p. 157)."
       }
@@ -857,18 +924,23 @@
       "La evaluación central deberá exigir explicar principios, interpretar narrativas de pacientes, adoptar perspectivas críticas, mostrar empatía genuina hacia visiones ajenas y evidenciar autoconocimiento sobre los propios sesgos en comités bioéticos simulados."
     ],
     "successMetric": "Evidenciar en un portafolio de desempeños auténticos ('álbum fotográfico' de evidencias) las 6 dimensiones de la comprensión bioética antes de ingresar al internado.",
-    "options": ["action-mapping", "pebble-in-the-pond", "backward-design", "4c-id", "dick-carey"],
+    "options": [
+      "backward-design",
+      "pebble-in-the-pond",
+      "4c-id",
+      "action-mapping"
+    ],
     "feedback": {
       "backward-design": {
         "verdict": "correct",
-        "label": "Por qué SÍ es Backward Design / UbD (Wiggins & McTighe)",
+        "label": "¿Por qué SÍ es Backward Design / UbD (Wiggins & McTighe)?",
         "text": "Es el caso paradigmático de las 6 Facetas de la Comprensión de Wiggins y McTighe (2005, Cap. 4, pp. 82–104; 2012, pp. 1, 4–5): cuando el aprendizaje exige no solo explicar y aplicar, sino también interpretar, tener perspectiva crítica, empatizar con cosmovisiones distintas y ejercer el autoconocimiento (reconocer los propios prejuicios), organizando unidades multi-lección alrededor de Preguntas Esenciales y un 'álbum fotográfico' de evidencias en la Etapa 2.",
         "source": "Wiggins & McTighe (2005). Understanding by Design, Cap. 4 (pp. 82–104) y McTighe & Wiggins (2012, pp. 1, 4–7).",
         "quote": "Understanding is revealed when students autonomously make sense of and transfer their learning through authentic performance. Six facets of understanding—the capacity to explain, interpret, apply, shift perspective, empathize, and self-assess—can serve as indicators of understanding."
       },
       "4c-id": {
         "verdict": "trap",
-        "label": "Trampa frecuente: Por qué NO es 4C-ID (van Merriënboer)",
+        "label": "Trampa frecuente: ¿Por qué NO es 4C-ID (van Merriënboer)?",
         "text": "Aunque 4C-ID integra actitudes dentro de tareas profesionales complejas, está diseñado para regular la carga cognitiva entre procedimientos rutinarios y resolución técnica de problemas, mientras que el núcleo de este caso son las Preguntas Esenciales abiertas y las 6 Facetas de la Comprensión (perspectiva, empatía y autoconocimiento) propias de UbD.",
         "source": "Wiggins & McTighe (2005, Cap. 4, pp. 95–104); van Merriënboer et al. (2024, Cap. 1, p. 11)."
       },
@@ -880,13 +952,13 @@
       },
       "action-mapping": {
         "verdict": "no",
-        "label": "Por qué NO es Action Mapping (Cathy Moore)",
+        "label": "¿Por qué NO es Action Mapping (Cathy Moore)?",
         "text": "Formar el juicio bioético, la empatía y el autoconocimiento médico en una asignatura universitaria no puede reducirse a una lista rápida de conductas de negocio.",
         "source": "Moore, C. (2017). Map It, Intro (p. 5)."
       },
       "dick-carey": {
         "verdict": "no",
-        "label": "Por qué NO es Dick & Carey",
+        "label": "¿Por qué NO es Dick & Carey?",
         "text": "Fragmentar la deliberación bioética en una jerarquía de subobjetivos con pruebas cerradas fue precisamente lo que produjo alumnos con notas de 4,8 pero sin empatía ni criterio en el hospital.",
         "source": "Wiggins & McTighe (2005, Cap. 1, p. 16)."
       }

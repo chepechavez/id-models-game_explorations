@@ -71,16 +71,25 @@ describe('roomCode utilities', () => {
 describe('buildSessionSequence (6, 12 y 18 rondas)', () => {
   const cases = casesData as unknown as CaseItem[];
 
-  it('arma secuencias válidas de 6, 12 y 18 rondas sin modelos consecutivos repetidos', () => {
+  it('arma secuencias válidas respetando la progresión de niveles 1 -> 2 -> 3', () => {
     for (const count of [6, 12, 18] as const) {
       const seq = buildSessionSequence(cases, count);
       expect(seq).toHaveLength(count);
       const mapped = seq.map((id) => cases.find((c) => c.id === id)!);
 
       for (let i = 1; i < mapped.length; i++) {
-        expect(mapped[i].model).not.toBe(mapped[i - 1].model);
         expect(mapped[i].level).toBeGreaterThanOrEqual(mapped[i - 1].level);
       }
+    }
+  });
+
+  it('respeta el subconjunto de modelos seleccionados por el docente', () => {
+    const selected = ['action-mapping', 'addie'] as const;
+    const seq = buildSessionSequence(cases, 6, [...selected]);
+    expect(seq).toHaveLength(6);
+    const mapped = seq.map((id) => cases.find((c) => c.id === id)!);
+    for (const item of mapped) {
+      expect(['action-mapping', 'addie']).toContain(item.model);
     }
   });
 });

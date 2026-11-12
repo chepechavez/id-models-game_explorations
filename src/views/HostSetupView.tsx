@@ -1,16 +1,27 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { CaseItem, SessionRoundCount } from '../types';
+import { CaseItem, ModelId, SessionRoundCount } from '../types';
 import { createRoom } from '../game/roomApi';
 import { getActiveBackendMode, setForceLocalMode } from '../firebase';
+import { ALL_MODELS } from '../game/sequences';
 
 interface HostSetupViewProps {
   cases: CaseItem[];
 }
 
+const MODEL_LABELS: Record<ModelId, { name: string; author: string; color: string }> = {
+  'action-mapping': { name: 'Action Mapping', author: 'Cathy Moore', color: '#10b981' },
+  '4c-id': { name: '4C-ID', author: 'van Merriënboer & Kirschner', color: '#f59e0b' },
+  addie: { name: 'ADDIE', author: 'Branch', color: '#0ea5e9' },
+  'dick-carey': { name: 'Dick & Carey', author: 'Dick, Carey & Carey', color: '#ec4899' },
+  'pebble-in-the-pond': { name: 'Pebble in the Pond', author: 'M. David Merrill', color: '#14b8a6' },
+  'backward-design': { name: 'Backward Design (UbD)', author: 'Wiggins & McTighe', color: '#8b5cf6' },
+};
+
 export const HostSetupView: React.FC<HostSetupViewProps> = ({ cases }) => {
   const navigate = useNavigate();
   const [roundCount, setRoundCount] = useState<SessionRoundCount>(12);
+  const [selectedModels, setSelectedModels] = useState<ModelId[]>([...ALL_MODELS]);
   const [durL1, setDurL1] = useState<number>(180);
   const [durL2, setDurL2] = useState<number>(240);
   const [durL3, setDurL3] = useState<number>(300);
@@ -18,13 +29,41 @@ export const HostSetupView: React.FC<HostSetupViewProps> = ({ cases }) => {
   const [error, setError] = useState<string | null>(null);
   const [mode, setMode] = useState(() => getActiveBackendMode());
 
+  const toggleModel = (modelId: ModelId) => {
+    setSelectedModels((prev) => {
+      if (prev.includes(modelId)) {
+        if (prev.length <= 2) {
+          setError('Debes mantener al menos 2 modelos activos para permitir opciones contrastadas.');
+          return prev;
+        }
+        setError(null);
+        return prev.filter((id) => id !== modelId);
+      } else {
+        setError(null);
+        return [...prev, modelId];
+      }
+    });
+  };
+
+  const handleSelectAllModels = () => {
+    setSelectedModels([...ALL_MODELS]);
+    setError(null);
+  };
+
   const handleCreateRoom = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
+
+    if (selectedModels.length < 2) {
+      setError('Debes seleccionar al menos 2 modelos para que las preguntas tengan opciones de respuesta.');
+      return;
+    }
+
     setCreating(true);
     try {
       const { code } = await createRoom(cases, {
         roundCount,
+        selectedModels,
         durations: {
           1: Math.max(15, durL1),
           2: Math.max(15, durL2),
@@ -32,8 +71,8 @@ export const HostSetupView: React.FC<HostSetupViewProps> = ({ cases }) => {
         },
       });
       navigate(`/host/${code}`);
-    } catch (err: any) {
-      const msg = String(err?.message || '');
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : String(err);
       if (msg.includes('PERMISSION_DENIED') || msg.includes('permission_denied')) {
         setError(
           'Firebase rechazó la escritura (PERMISSION_DENIED): abre Firebase Console → Realtime Database → Reglas (Rules) y publica el contenido de database.rules.json.'
@@ -58,14 +97,14 @@ export const HostSetupView: React.FC<HostSetupViewProps> = ({ cases }) => {
         }}
       >
         <div>
-          <span className="kicker">Consola del Docente / Facilitador</span>
+          <span className="kicker">Consola del docente / facilitador</span>
           <h1 style={{ fontSize: '1.8rem', marginTop: '0.25rem' }}>
-            Configurar Nueva Sesión de «El Encargo»
+            Configurar nueva sesión de «El Encargo»
           </h1>
           <p style={{ color: 'var(--text-secondary)', marginTop: '0.35rem', fontSize: '0.94rem' }}>
-            Selecciona la extensión de la sesión y los tiempos por nivel de complejidad. El sistema
-            construye automáticamente una secuencia balanceada que cubre los 6 modelos sin repetir el
-            mismo modelo en rondas consecutivas y escalando de 3 a 5 opciones.
+            Selecciona la extensión de la sesión, los modelos activos y los tiempos por nivel.
+            El sistema genera una secuencia aleatoria y progresiva:
+            <strong> Nivel 1 (2 opciones) → Nivel 2 (3 opciones) → Nivel 3 (4 opciones)</strong>.
           </p>
         </div>
 
@@ -98,15 +137,15 @@ export const HostSetupView: React.FC<HostSetupViewProps> = ({ cases }) => {
               className="btn btn-sm btn-primary"
               onClick={() => navigate(`/host/${localStorage.getItem('el_encargo_last_host_room')}`)}
             >
-              Reanudar Consola de la Sala
+              Reanudar consola de la sala
             </button>
           </div>
         )}
 
         <form onSubmit={handleCreateRoom} style={{ display: 'flex', flexDirection: 'column', gap: '1.35rem' }}>
-          {/* Selector de 6, 12 o 18 rondas */}
+          {/* Selector de rondas */}
           <div>
-            <span className="brief-section-label">1. Extensión de la Sesión (Número de Rondas)</span>
+            <span className="brief-section-label">1. Extensión de la sesión (número de rondas)</span>
             <div
               style={{
                 display: 'grid',
@@ -119,20 +158,20 @@ export const HostSetupView: React.FC<HostSetupViewProps> = ({ cases }) => {
                 [
                   {
                     count: 6 as SessionRoundCount,
-                    title: '6 Rondas (Express)',
-                    subtitle: '1 caso por modelo (2 básicos, 2 intermedios, 2 avanzados)',
+                    title: '6 rondas (Express)',
+                    subtitle: '2 casos de nivel 1, 2 de nivel 2 y 2 de nivel 3',
                     duration: '~35 – 45 min con debate',
                   },
                   {
                     count: 12 as SessionRoundCount,
-                    title: '12 Rondas (Estándar)',
-                    subtitle: '2 casos por modelo (6 básicos + 3 intermedios + 3 avanzados)',
+                    title: '12 rondas (Estándar)',
+                    subtitle: '4 casos por nivel (progresión balanceada)',
                     duration: '~75 – 90 min con debate',
                   },
                   {
                     count: 18 as SessionRoundCount,
-                    title: '18 Rondas (Banco Completo)',
-                    subtitle: '3 casos por modelo (6 básicos + 6 intermedios + 6 avanzados)',
+                    title: '18 rondas (Banco completo)',
+                    subtitle: '6 casos por nivel (experiencia profunda)',
                     duration: '~110 – 130 min (o 2 sesiones)',
                   },
                 ] as const
@@ -166,10 +205,73 @@ export const HostSetupView: React.FC<HostSetupViewProps> = ({ cases }) => {
             </div>
           </div>
 
+          {/* Modelos activos para la sesión */}
+          <div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.4rem' }}>
+              <span className="brief-section-label" style={{ margin: 0 }}>
+                2. Modelos sobre los que se harán preguntas ({selectedModels.length} de {ALL_MODELS.length} activos)
+              </span>
+              <button
+                type="button"
+                className="btn btn-sm"
+                onClick={handleSelectAllModels}
+                style={{ fontSize: '0.78rem', padding: '0.2rem 0.55rem' }}
+              >
+                Activar todos
+              </button>
+            </div>
+            <p style={{ fontSize: '0.83rem', color: 'var(--text-muted)', marginBottom: '0.6rem' }}>
+              Puedes desactivar modelos que aún no se hayan cubierto en clase. Se requieren al menos 2 modelos activos.
+            </p>
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+                gap: '0.65rem',
+              }}
+            >
+              {ALL_MODELS.map((mId) => {
+                const meta = MODEL_LABELS[mId];
+                const isSelected = selectedModels.includes(mId);
+                return (
+                  <label
+                    key={mId}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '0.75rem',
+                      padding: '0.65rem 0.85rem',
+                      borderRadius: 'var(--radius-sm)',
+                      background: isSelected ? 'var(--bg-elevated)' : 'rgba(255, 255, 255, 0.02)',
+                      border: `1px solid ${isSelected ? meta.color : 'var(--border-subtle)'}`,
+                      cursor: 'pointer',
+                      transition: 'border-color 0.2s, background 0.2s',
+                    }}
+                  >
+                    <input
+                      type="checkbox"
+                      checked={isSelected}
+                      onChange={() => toggleModel(mId)}
+                      style={{ accentColor: meta.color, width: '17px', height: '17px' }}
+                    />
+                    <div style={{ flex: 1 }}>
+                      <div style={{ fontWeight: 600, fontSize: '0.92rem', color: isSelected ? 'var(--text-primary)' : 'var(--text-muted)' }}>
+                        {meta.name}
+                      </div>
+                      <div style={{ fontSize: '0.76rem', color: 'var(--text-muted)' }}>
+                        {meta.author}
+                      </div>
+                    </div>
+                  </label>
+                );
+              })}
+            </div>
+          </div>
+
           {/* Temporizadores por nivel */}
           <div>
             <span className="brief-section-label">
-              2. Temporizador Sugerido por Ronda (Puedes cerrar antes o extender +60s en vivo)
+              3. Temporizador sugerido por ronda (puedes cerrar antes o extender +60s en vivo)
             </span>
             <div
               style={{
@@ -181,7 +283,7 @@ export const HostSetupView: React.FC<HostSetupViewProps> = ({ cases }) => {
             >
               <div className="surface-card-elevated">
                 <label htmlFor="dur-l1" className="field-label">
-                  Nivel 1 (3 opciones — Básico)
+                  Nivel 1 (2 opciones — Básico)
                 </label>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginTop: '0.4rem' }}>
                   <input
@@ -199,7 +301,7 @@ export const HostSetupView: React.FC<HostSetupViewProps> = ({ cases }) => {
 
               <div className="surface-card-elevated">
                 <label htmlFor="dur-l2" className="field-label">
-                  Nivel 2 (4 opciones — Trade-offs)
+                  Nivel 2 (3 opciones — Diagnóstico y trade-offs)
                 </label>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginTop: '0.4rem' }}>
                   <input
@@ -217,7 +319,7 @@ export const HostSetupView: React.FC<HostSetupViewProps> = ({ cases }) => {
 
               <div className="surface-card-elevated">
                 <label htmlFor="dur-l3" className="field-label">
-                  Nivel 3 (5 opciones — Alta tensión)
+                  Nivel 3 (4 opciones — Alta tensión y trampas)
                 </label>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginTop: '0.4rem' }}>
                   <input
@@ -245,7 +347,7 @@ export const HostSetupView: React.FC<HostSetupViewProps> = ({ cases }) => {
             className="btn btn-primary btn-lg"
             disabled={creating}
           >
-            {creating ? 'Generando Sala...' : `Crear Sala de ${roundCount} Rondas`}
+            {creating ? 'Generando sala...' : `Crear sala de ${roundCount} rondas`}
           </button>
         </form>
 
@@ -267,8 +369,8 @@ export const HostSetupView: React.FC<HostSetupViewProps> = ({ cases }) => {
               {mode === 'firebase-cloud'
                 ? 'Firebase Realtime Database (Multidispositivo en la nube)'
                 : mode === 'firebase-emulator'
-                ? 'Emulador Local de Firebase Realtime Database'
-                : 'Modo Ensayo Local (Sincronización entre pestañas)'}
+                ? 'Emulador local de Firebase Realtime Database'
+                : 'Modo ensayo local (Sincronización entre pestañas)'}
             </strong>
           </div>
           <button
@@ -289,8 +391,8 @@ export const HostSetupView: React.FC<HostSetupViewProps> = ({ cases }) => {
             }}
           >
             {mode === 'local-broadcast'
-              ? 'Usar Sincronización en la Nube'
-              : 'Usar Modo Ensayo Local'}
+              ? 'Usar sincronización en la nube'
+              : 'Usar modo ensayo local'}
           </button>
         </div>
       </div>

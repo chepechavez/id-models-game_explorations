@@ -90,6 +90,7 @@ export interface RoomConfig {
     2: number;
     3: number;
   };
+  selectedModels?: ModelId[];
 }
 
 export interface RoomState {
@@ -127,6 +128,9 @@ export interface RoundResult {
       correct: boolean;
       option: ModelId | null;
       responseTimeMs: number | null;
+      rankDelta?: number;
+      prevRank?: number;
+      newRank?: number;
     }
   >;
   scored: boolean;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { CaseItem, ModelGuideItem, ModelId } from '../types';
 import { useRoom } from '../game/useRoom';
@@ -6,11 +6,17 @@ import { useServerClock } from '../game/useServerClock';
 import { joinRoom, recordGuideOpen, submitAnswer } from '../game/roomApi';
 import { computeLeaderboard } from '../game/analytics';
 import { GuideView } from './GuideView';
+import { soundEffects } from '../game/soundEffects';
+import { fireSuccessConfetti, fireCelebrationCannon } from '../game/confetti';
+import { shuffleArray } from '../game/sequences';
 
 interface PlayViewProps {
   cases: CaseItem[];
   models: ModelGuideItem[];
 }
+
+const NOTEBOOK_URL = 'https://notebook.google.com/notebook/e7877e8f-0636-4582-ad53-53fd68587b5e';
+const DRIVE_FOLDER_URL = 'https://drive.google.com/drive/folders/1ByUqJZhA83Wwrb_cVSfKo_hwYfqBnNLV';
 
 export const PlayView: React.FC<PlayViewProps> = ({ cases, models }) => {
   const { code } = useParams<{ code: string }>();
@@ -22,6 +28,57 @@ export const PlayView: React.FC<PlayViewProps> = ({ cases, models }) => {
   const [joinErr, setJoinErr] = useState<string | null>(null);
   const [submittingVote, setSubmittingVote] = useState(false);
   const [voteError, setVoteError] = useState<string | null>(null);
+  const [copiedLink, setCopiedLink] = useState(false);
+
+  const roundIndex = room?.state.roundIndex ?? 0;
+  const totalRounds = room?.config.sequence.length ?? 0;
+  const currentCaseId = room?.config.sequence[roundIndex];
+  const currentCase = cases.find((c) => c.id === currentCaseId);
+  const myAnswer = uid ? room?.answers?.[roundIndex]?.[uid] : undefined;
+  const roundResult = room?.results?.[roundIndex];
+  const myDelta = uid ? roundResult?.playerDeltas?.[uid] : undefined;
+
+  const remainingSeconds =
+    room?.state.phase === 'open'
+      ? Math.max(0, Math.ceil((room.state.deadline - now) / 1000))
+      : 0;
+  const isTimeExpired = room?.state.phase === 'open' && remainingSeconds <= 0;
+
+  // Barajado de opciones para la ronda actual (para que la posición de la respuesta no sea fija)
+  const displayOptions = useMemo(() => {
+    if (!currentCase) return [];
+    return shuffleArray(currentCase.options);
+  }, [currentCase?.id]);
+
+  // Efectos de sonido y confeti sincronizados al cambiar de fase
+  const lastPhaseHandledRef = useRef<string>('');
+  useEffect(() => {
+    if (!room) return;
+    const key = `${room.state.roundIndex}-${room.state.phase}`;
+    if (lastPhaseHandledRef.current !== key) {
+      lastPhaseHandledRef.current = key;
+
+      if (room.state.phase === 'revealed' && myDelta) {
+        if (myDelta.correct) {
+          soundEffects.playSuccess();
+          fireSuccessConfetti();
+        } else {
+          soundEffects.playFailure();
+        }
+      } else if (room.state.phase === 'final') {
+        fireCelebrationCannon();
+      }
+    }
+  }, [room?.state.phase, room?.state.roundIndex, myDelta]);
+
+  // Alarma sonora de tiempo agotado
+  const timeoutPlayedRoundRef = useRef<number>(-1);
+  useEffect(() => {
+    if (room?.state.phase === 'open' && isTimeExpired && timeoutPlayedRoundRef.current !== roundIndex) {
+      timeoutPlayedRoundRef.current = roundIndex;
+      soundEffects.playTimeout();
+    }
+  }, [room?.state.phase, isTimeExpired, roundIndex]);
 
   if (loading) {
     return (
@@ -60,8 +117,9 @@ export const PlayView: React.FC<PlayViewProps> = ({ cases, models }) => {
       }
       try {
         await joinRoom(code, quickJoinName.trim());
-      } catch (err: any) {
-        setJoinErr(err?.message || 'Error al registrarse en la sala.');
+      } catch (err: unknown) {
+        const msg = err instanceof Error ? err.message : String(err);
+        setJoinErr(msg || 'Error al registrarse en la sala.');
       }
     };
 
@@ -69,7 +127,7 @@ export const PlayView: React.FC<PlayViewProps> = ({ cases, models }) => {
       <main className="container-narrow">
         <div className="surface-card" style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           <span className="kicker">Sala {room.code}</span>
-          <h2>Regístrate como Consultor ID</h2>
+          <h2>Regístrate como consultor ID</h2>
           <form onSubmit={handleQuickJoin} style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
             <input
               id="quick-join-name"
@@ -82,27 +140,13 @@ export const PlayView: React.FC<PlayViewProps> = ({ cases, models }) => {
             />
             {joinErr && <div style={{ color: '#fca5a5', fontSize: '0.86rem' }}>{joinErr}</div>}
             <button id="quick-join-btn" type="submit" className="btn btn-primary">
-              Entrar a la Sala {room.code}
+              Entrar a la sala {room.code}
             </button>
           </form>
         </div>
       </main>
     );
   }
-
-  const roundIndex = room.state.roundIndex;
-  const totalRounds = room.config.sequence.length;
-  const currentCaseId = room.config.sequence[roundIndex];
-  const currentCase = cases.find((c) => c.id === currentCaseId);
-  const myAnswer = uid ? room.answers?.[roundIndex]?.[uid] : undefined;
-  const roundResult = room.results?.[roundIndex];
-  const myDelta = uid ? roundResult?.playerDeltas?.[uid] : undefined;
-
-  const remainingSeconds =
-    room.state.phase === 'open'
-      ? Math.max(0, Math.ceil((room.state.deadline - now) / 1000))
-      : 0;
-  const isTimeExpired = room.state.phase === 'open' && remainingSeconds <= 0;
 
   const formatTimer = (sec: number) => {
     const m = Math.floor(sec / 60);
@@ -116,8 +160,9 @@ export const PlayView: React.FC<PlayViewProps> = ({ cases, models }) => {
     setSubmittingVote(true);
     try {
       await submitAnswer(code, roundIndex, modelId);
-    } catch (err: any) {
-      setVoteError(err?.message || 'No se pudo registrar tu voto.');
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : String(err);
+      setVoteError(msg || 'No se pudo registrar tu voto.');
     } finally {
       setSubmittingVote(false);
     }
@@ -127,6 +172,15 @@ export const PlayView: React.FC<PlayViewProps> = ({ cases, models }) => {
     setActiveTab(tab);
     if (tab === 'guide') {
       recordGuideOpen(code).catch(() => {});
+    }
+  };
+
+  const handleCopyNotebookLink = () => {
+    if (navigator?.clipboard) {
+      navigator.clipboard.writeText(NOTEBOOK_URL).then(() => {
+        setCopiedLink(true);
+        setTimeout(() => setCopiedLink(false), 2200);
+      });
     }
   };
 
@@ -154,7 +208,7 @@ export const PlayView: React.FC<PlayViewProps> = ({ cases, models }) => {
           <span style={{ fontWeight: 600 }}>{player.name}</span>
           {room.state.phase !== 'lobby' && (
             <span className="badge mono-num">
-              Ronda {roundIndex + 1} / {totalRounds}
+              Ronda {roundIndex + 1} de {totalRounds}
             </span>
           )}
         </div>
@@ -174,7 +228,7 @@ export const PlayView: React.FC<PlayViewProps> = ({ cases, models }) => {
         </div>
       </div>
 
-      {/* Pestañas: Brief / Vademécum disponible desde la ronda 1 */}
+      {/* Pestañas de navegación contextual: Brief / Vademécum */}
       <div className="tab-strip" style={{ marginBottom: '1.2rem' }}>
         <button
           type="button"
@@ -182,7 +236,7 @@ export const PlayView: React.FC<PlayViewProps> = ({ cases, models }) => {
           className={`tab-btn ${activeTab === 'brief' ? 'is-active' : ''}`}
           onClick={() => handleSwitchTab('brief')}
         >
-          1. Encargo y Prescripción
+          1. Encargo y prescripción
         </button>
         <button
           type="button"
@@ -195,11 +249,22 @@ export const PlayView: React.FC<PlayViewProps> = ({ cases, models }) => {
       </div>
 
       {activeTab === 'guide' ? (
-        <GuideView
-          models={models}
-          highlightedOptions={currentCase?.options}
-          compact={true}
-        />
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+          <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+            <button
+              type="button"
+              className="btn btn-sm btn-primary"
+              onClick={() => handleSwitchTab('brief')}
+            >
+              ← Volver al encargo de la ronda
+            </button>
+          </div>
+          <GuideView
+            models={models}
+            highlightedOptions={currentCase?.options}
+            compact={true}
+          />
+        </div>
       ) : (
         <>
           {/* ESTADO 1: LOBBY */}
@@ -209,11 +274,11 @@ export const PlayView: React.FC<PlayViewProps> = ({ cases, models }) => {
               className="surface-card"
               style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}
             >
-              <span className="kicker">Sala de Espera de Consultores</span>
+              <span className="kicker">Sala de espera de consultores</span>
               <h2>Conectado como Lead ID ({player.name})</h2>
               <p style={{ color: 'var(--text-secondary)' }}>
                 El docente iniciará la Ronda 1 en breve. Mientras tanto, puedes explorar el{' '}
-                <strong>Vademécum de Modelos</strong> en la pestaña superior para revisar las fortalezas,
+                <strong>Vademécum de modelos</strong> en la pestaña superior para revisar las fortalezas,
                 contraindicaciones y artefactos de salida de los 6 enfoques.
               </p>
               <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', alignItems: 'center' }}>
@@ -225,7 +290,7 @@ export const PlayView: React.FC<PlayViewProps> = ({ cases, models }) => {
                   className="btn btn-sm btn-primary"
                   onClick={() => handleSwitchTab('guide')}
                 >
-                  Revisar Vademécum Ahora
+                  Revisar Vademécum ahora
                 </button>
               </div>
             </section>
@@ -250,12 +315,12 @@ export const PlayView: React.FC<PlayViewProps> = ({ cases, models }) => {
                 </div>
 
                 <div>
-                  <span className="brief-section-label">Síntoma y Situación Actual</span>
+                  <span className="brief-section-label">Síntoma y situación actual</span>
                   <p className="brief-text">{currentCase.brief}</p>
                 </div>
 
                 <div>
-                  <span className="brief-section-label">Restricciones Operativas y del Ecosistema</span>
+                  <span className="brief-section-label">Restricciones operativas y del ecosistema</span>
                   <ul className="constraints-list">
                     {currentCase.constraints.map((c, idx) => (
                       <li key={idx}>{c}</li>
@@ -265,7 +330,7 @@ export const PlayView: React.FC<PlayViewProps> = ({ cases, models }) => {
 
                 <div className="metric-callout">
                   <span className="brief-section-label" style={{ color: '#6ee7b7' }}>
-                    Meta de Éxito y Criterio de Aceptación
+                    Meta de éxito y criterio de aceptación
                   </span>
                   {currentCase.successMetric}
                 </div>
@@ -275,7 +340,7 @@ export const PlayView: React.FC<PlayViewProps> = ({ cases, models }) => {
               <section className="surface-card" style={{ display: 'flex', flexDirection: 'column', gap: '0.9rem' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.5rem' }}>
                   <div>
-                    <span className="kicker">Prescripción Metodológica</span>
+                    <span className="kicker">Prescripción metodológica</span>
                     <h3 style={{ fontSize: '1.15rem', marginTop: '0.15rem' }}>
                       {room.state.phase === 'open' && !isTimeExpired
                         ? 'Selecciona el modelo idóneo (puedes cambiar tu opción antes del cierre)'
@@ -294,7 +359,7 @@ export const PlayView: React.FC<PlayViewProps> = ({ cases, models }) => {
                 )}
 
                 <div className="model-options-stack">
-                  {currentCase.options.map((optId, idx) => {
+                  {displayOptions.map((optId, idx) => {
                     const m = modelMap.get(optId);
                     if (!m) return null;
                     const isSelected = myAnswer?.option === optId;
@@ -361,10 +426,10 @@ export const PlayView: React.FC<PlayViewProps> = ({ cases, models }) => {
             </div>
           )}
 
-          {/* ESTADO 4: RONDA REVELADA (FEEDBACK DETALLADO) */}
+          {/* ESTADO 4: RONDA REVELADA (FEEDBACK DETALLADO Y GAMIFICACIÓN) */}
           {room.state.phase === 'revealed' && currentCase && (
             <div id="student-revealed-state" style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
-              {/* Banner de resultado individual */}
+              {/* Banner de resultado individual con etiquetas de racha y posición */}
               <div
                 className="surface-card"
                 style={{
@@ -381,16 +446,16 @@ export const PlayView: React.FC<PlayViewProps> = ({ cases, models }) => {
                 <div>
                   <span className="kicker">
                     {myDelta?.correct
-                      ? 'Diagnóstico Senior Acertado'
+                      ? 'Diagnóstico senior acertado'
                       : myAnswer
-                      ? 'Prescripción Contraindicada'
-                      : 'Sin Respuesta Registrada'}
+                      ? 'Prescripción contraindicada'
+                      : 'Sin respuesta registrada'}
                   </span>
                   <h2 style={{ fontSize: '1.4rem', marginTop: '0.2rem' }}>
-                    Modelo Correcto: {modelMap.get(currentCase.model)?.name}
+                    Modelo correcto: {modelMap.get(currentCase.model)?.name}
                   </h2>
                   <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginTop: '0.25rem' }}>
-                    <strong>Artefacto Desbloqueado:</strong> {currentCase.artifactUnlocked}
+                    <strong>Artefacto desbloqueado:</strong> {currentCase.artifactUnlocked}
                   </p>
                 </div>
 
@@ -407,6 +472,37 @@ export const PlayView: React.FC<PlayViewProps> = ({ cases, models }) => {
                   </div>
                   <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
                     Acumulado: {player.score} pts
+                  </div>
+
+                  {/* Etiquetas dinámicas de cambio de puntuación, ranking y racha */}
+                  <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap', marginTop: '0.45rem', justifyContent: 'flex-end' }}>
+                    {myDelta?.rankDelta !== undefined && (
+                      myDelta.rankDelta > 0 ? (
+                        <span className="badge badge-rank-up">
+                          ▲ Subiste {myDelta.rankDelta} {myDelta.rankDelta === 1 ? 'puesto' : 'puestos'} (#{myDelta.prevRank} → #{myDelta.newRank})
+                        </span>
+                      ) : myDelta.rankDelta < 0 ? (
+                        <span className="badge badge-rank-down">
+                          ▼ Bajaste {Math.abs(myDelta.rankDelta)} {Math.abs(myDelta.rankDelta) === 1 ? 'puesto' : 'puestos'} (#{myDelta.prevRank} → #{myDelta.newRank})
+                        </span>
+                      ) : (
+                        <span className="badge badge-rank-same">
+                          ● Mantienes el puesto #{myDelta.newRank}
+                        </span>
+                      )
+                    )}
+
+                    {myDelta?.newStreak !== undefined && myDelta.newStreak >= 2 && (
+                      <span className="badge badge-streak">
+                        {myDelta.newStreak >= 5 ? '⚡' : '🔥'} ¡En racha! {myDelta.newStreak} aciertos seguidos
+                      </span>
+                    )}
+
+                    {!myDelta?.correct && (player.streak ?? 0) === 0 && myAnswer && (
+                      <span className="badge" style={{ background: 'rgba(239, 68, 68, 0.14)', color: '#fca5a5' }}>
+                        ❄️ Racha reiniciada
+                      </span>
+                    )}
                   </div>
                 </div>
               </div>
@@ -447,9 +543,9 @@ export const PlayView: React.FC<PlayViewProps> = ({ cases, models }) => {
               {/* Análisis completo de todas las opciones de la ronda */}
               <div className="surface-card" style={{ display: 'flex', flexDirection: 'column', gap: '0.9rem' }}>
                 <div>
-                  <span className="kicker">Dictamen de la Junta Consultora</span>
+                  <span className="kicker">Dictamen de la junta consultora</span>
                   <h3 style={{ fontSize: '1.2rem', marginTop: '0.2rem' }}>
-                    Por qué SÍ y por qué NO cada opción en este caso
+                    Por qué sí y por qué no cada opción en este caso
                   </h3>
                   <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', marginTop: '0.2rem' }}>
                     <strong>Principio clave:</strong> {currentCase.takeaway}
@@ -474,28 +570,33 @@ export const PlayView: React.FC<PlayViewProps> = ({ cases, models }) => {
                             ? 'is-trap'
                             : ''
                         }`}
-                        style={{ '--model-color': m.color, cursor: 'default' } as React.CSSProperties}
+                        style={{
+                          display: 'flex',
+                          flexDirection: 'column',
+                          gap: '0.5rem',
+                        }}
                       >
-                        <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem' }}>
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
-                            <strong style={{ fontSize: '1rem' }}>{m.name}</strong>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                            <strong style={{ color: m.color, fontSize: '1.02rem' }}>{m.name}</strong>
                             {fb.verdict === 'correct' && (
-                              <span className="badge badge-emerald">✓ MODELO IDÓNEO</span>
+                              <span className="badge badge-emerald">✓ Modelo idóneo</span>
                             )}
                             {fb.verdict === 'trap' && (
-                              <span className="badge badge-gold">⚠ TRAMPA FRECUENTE</span>
+                              <span className="badge badge-gold">⚠️ Trampa frecuente</span>
                             )}
-                            {fb.verdict === 'no' && (
-                              <span className="badge badge-rose">✕ CONTRAINDICADO</span>
+                            {isMyPick && (
+                              <span className="badge" style={{ background: 'rgba(255,255,255,0.16)' }}>
+                                Tu elección
+                              </span>
                             )}
-                            {isMyPick && <span className="badge">Tu voto</span>}
                           </div>
-                          <span className="badge mono-num">{votes} votos</span>
+                          <span className="mono-num" style={{ fontSize: '0.82rem', color: 'var(--text-muted)' }}>
+                            {votes} {votes === 1 ? 'voto' : 'votos'} de la cohorte
+                          </span>
                         </div>
 
-                        <div style={{ fontWeight: 600, fontSize: '0.9rem', color: 'var(--text-primary)' }}>
-                          {fb.label}
-                        </div>
+                        <div style={{ fontWeight: 600, fontSize: '0.92rem' }}>{fb.label}</div>
                         <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)' }}>{fb.text}</p>
                         <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
                           Fuente: <strong>{fb.source}</strong>
@@ -508,35 +609,86 @@ export const PlayView: React.FC<PlayViewProps> = ({ cases, models }) => {
             </div>
           )}
 
-          {/* ESTADO 5: CIERRE FINAL DE SESIÓN */}
+          {/* ESTADO 5: CIERRE FINAL DE SESIÓN CON ENLACES A NOTEBOOKLM Y RECURSOS */}
           {room.state.phase === 'final' && (
-            <section
-              id="student-final-state"
-              className="surface-card"
-              style={{ display: 'flex', flexDirection: 'column', gap: '1.1rem' }}
-            >
-              <span className="kicker">Sesión Finalizada</span>
-              <h2>Balance de Consultoría — {player.name}</h2>
-              <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-                <div className="surface-card-elevated" style={{ flex: 1, minWidth: '180px' }}>
-                  <span className="brief-section-label">Puntaje Final</span>
-                  <div className="mono-num" style={{ fontSize: '1.8rem', fontWeight: 700, color: 'var(--accent-gold)' }}>
-                    {player.score} pts
+            <div id="student-final-state" style={{ display: 'flex', flexDirection: 'column', gap: '1.35rem' }}>
+              <section className="surface-card" style={{ display: 'flex', flexDirection: 'column', gap: '1.1rem' }}>
+                <span className="kicker">Sesión finalizada</span>
+                <h2>Balance de consultoría — {player.name}</h2>
+                <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+                  <div className="surface-card-elevated" style={{ flex: 1, minWidth: '180px' }}>
+                    <span className="brief-section-label">Puntaje final</span>
+                    <div className="mono-num" style={{ fontSize: '1.8rem', fontWeight: 700, color: 'var(--accent-gold)' }}>
+                      {player.score} pts
+                    </div>
+                  </div>
+                  <div className="surface-card-elevated" style={{ flex: 1, minWidth: '180px' }}>
+                    <span className="brief-section-label">Posición en el ranking</span>
+                    <div className="mono-num" style={{ fontSize: '1.8rem', fontWeight: 700, color: 'var(--accent-emerald)' }}>
+                      #{myRank} de {leaderboard.length}
+                    </div>
                   </div>
                 </div>
-                <div className="surface-card-elevated" style={{ flex: 1, minWidth: '180px' }}>
-                  <span className="brief-section-label">Posición en el Ranking</span>
-                  <div className="mono-num" style={{ fontSize: '1.8rem', fontWeight: 700, color: 'var(--accent-emerald)' }}>
-                    #{myRank} de {leaderboard.length}
-                  </div>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '0.92rem' }}>
+                  Observa en la pantalla compartida del docente el <strong>Podio final</strong> y el{' '}
+                  <strong>Mapa de decisiones de la cohorte</strong> para discutir los patrones y
+                  contraindicaciones de los 6 modelos.
+                </p>
+              </section>
+
+              {/* Tarjeta de Recursos y Cuaderno NotebookLM */}
+              <section
+                className="surface-card"
+                style={{
+                  borderTop: '3px solid var(--accent-sky)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '0.95rem',
+                }}
+              >
+                <div>
+                  <span className="kicker">Material de profundización y recursos bibliográficos</span>
+                  <h3 style={{ fontSize: '1.3rem', marginTop: '0.2rem' }}>
+                    Experto en Modelos de Diseño Instruccional
+                  </h3>
+                  <p style={{ color: 'var(--text-secondary)', fontSize: '0.92rem', marginTop: '0.3rem' }}>
+                    Continúa tu formación y consulta las fuentes primarias de los modelos (Cathy Moore,
+                    van Merriënboer, Robert Branch, Dick &amp; Carey, David Merrill y Wiggins &amp; McTighe)
+                    en el cuaderno interactivo de NotebookLM o descarga las lecturas de referencia.
+                  </p>
                 </div>
-              </div>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.92rem' }}>
-                Observa en la pantalla compartida del docente el <strong>Podio Final</strong> y el{' '}
-                <strong>Mapa de Decisiones de la Cohorte</strong> para discutir los patrones y
-                contraindicaciones de los 6 modelos.
-              </p>
-            </section>
+
+                <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', alignItems: 'center' }}>
+                  <a
+                    href={NOTEBOOK_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-primary"
+                    style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
+                  >
+                    <span>📓</span> Abrir cuaderno en NotebookLM
+                  </a>
+
+                  <a
+                    href={DRIVE_FOLDER_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn"
+                    style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
+                  >
+                    <span>📁</span> Carpeta de lecturas en Drive
+                  </a>
+
+                  <button
+                    type="button"
+                    className="btn btn-sm"
+                    onClick={handleCopyNotebookLink}
+                  >
+                    {copiedLink ? '✓ Enlace copiado' : 'Copiar enlace al cuaderno'}
+                  </button>
+                </div>
+              </section>
+            </div>
           )}
         </>
       )}

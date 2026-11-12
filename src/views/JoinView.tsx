@@ -143,54 +143,9 @@ export const JoinView: React.FC = () => {
             className="btn btn-primary btn-lg"
             disabled={submitting}
           >
-            {submitting ? 'Conectando a la sala...' : 'Entrar a la Sala de Consultoría'}
+            {submitting ? 'Conectando a la sala...' : 'Entrar a la sala de consultoría'}
           </button>
         </form>
-
-        <div
-          style={{
-            borderTop: '1px solid var(--border-subtle)',
-            paddingTop: '1rem',
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            flexWrap: 'wrap',
-            gap: '0.75rem',
-            fontSize: '0.84rem',
-            color: 'var(--text-muted)',
-          }}
-        >
-          <span>
-            Modo activo:{' '}
-            <strong style={{ color: 'var(--text-secondary)' }}>
-              {backendMode === 'firebase-cloud'
-                ? 'Firebase Realtime (Multidispositivo)'
-                : backendMode === 'firebase-emulator'
-                ? 'Emulador Firebase Realtime'
-                : 'Sincronización Local Multi-pestaña'}
-            </strong>
-          </span>
-          <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-            <button
-              type="button"
-              className="btn btn-sm"
-              onClick={() => {
-                const nextLocal = backendMode !== 'local-broadcast';
-                setForceLocalMode(nextLocal);
-                setBackendMode(getActiveBackendMode());
-                setError(null);
-              }}
-            >
-              {backendMode === 'local-broadcast' ? 'Usar Nube' : 'Usar Modo Local'}
-            </button>
-            <Link to="/guia" className="btn btn-sm">
-              Abrir Vademécum ID
-            </Link>
-            <Link to="/host" id="go-to-host-link" className="btn btn-sm">
-              Panel del Docente
-            </Link>
-          </div>
-        </div>
       </div>
     </main>
   );

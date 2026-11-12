@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { QRCodeSVG } from 'qrcode.react';
 import { CaseItem, ModelGuideItem, ModelId } from '../types';
@@ -6,6 +6,8 @@ import { useRoom } from '../game/useRoom';
 import { useServerClock } from '../game/useServerClock';
 import { computeDecisionMap, computeLeaderboard } from '../game/analytics';
 import { getActiveBackendMode } from '../firebase';
+import { fireCelebrationCannon } from '../game/confetti';
+import { soundEffects } from '../game/soundEffects';
 
 interface ScreenViewProps {
   cases: CaseItem[];
@@ -55,6 +57,18 @@ export const ScreenView: React.FC<ScreenViewProps> = ({ cases, models }) => {
 
   const allModelIds = models.map((m) => m.id);
   const decisionMap = computeDecisionMap(room, cases, allModelIds);
+
+  useEffect(() => {
+    if (room.state.phase === 'final') {
+      fireCelebrationCannon();
+    }
+  }, [room.state.phase]);
+
+  useEffect(() => {
+    if (room.state.phase === 'revealed') {
+      soundEffects.playSuccess();
+    }
+  }, [room.state.phase, room.state.roundIndex]);
 
   return (
     <main className="container screen-mode" id="projection-screen-root">
@@ -503,6 +517,69 @@ export const ScreenView: React.FC<ScreenViewProps> = ({ cases, models }) => {
                   })}
                 </tbody>
               </table>
+            </div>
+          </section>
+
+          {/* Recursos bibliográficos proyectados con códigos QR */}
+          <section
+            className="surface-card"
+            style={{
+              borderTop: '3px solid var(--accent-sky)',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              flexWrap: 'wrap',
+              gap: '1.5rem',
+              padding: '1.5rem',
+            }}
+          >
+            <div style={{ flex: 1, minWidth: '280px' }}>
+              <span className="kicker">Recursos bibliográficos de cátedra</span>
+              <h2 style={{ fontSize: '1.55rem', marginTop: '0.2rem' }}>
+                Cuaderno interactivo: Experto en modelos ID
+              </h2>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', marginTop: '0.35rem' }}>
+                Escanea el código QR con la cámara de tu móvil para ingresar al cuaderno de NotebookLM
+                y profundizar en las fuentes primarias de los modelos, o accede a la carpeta con las lecturas.
+              </p>
+              <div style={{ display: 'flex', gap: '0.75rem', marginTop: '1rem', flexWrap: 'wrap' }}>
+                <a
+                  href="https://notebook.google.com/notebook/e7877e8f-0636-4582-ad53-53fd68587b5e"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-sky"
+                >
+                  📓 Abrir cuaderno en NotebookLM
+                </a>
+                <a
+                  href="https://drive.google.com/drive/folders/1ByUqJZhA83Wwrb_cVSfKo_hwYfqBnNLV"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn"
+                >
+                  📁 Carpeta de lecturas en Drive
+                </a>
+              </div>
+            </div>
+
+            <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
+              <div style={{ textAlign: 'center' }}>
+                <div style={{ background: '#ffffff', padding: '0.65rem', borderRadius: '10px', display: 'inline-flex' }}>
+                  <QRCodeSVG value="https://notebook.google.com/notebook/e7877e8f-0636-4582-ad53-53fd68587b5e" size={128} />
+                </div>
+                <div style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--text-secondary)', marginTop: '0.4rem' }}>
+                  QR NotebookLM
+                </div>
+              </div>
+
+              <div style={{ textAlign: 'center' }}>
+                <div style={{ background: '#ffffff', padding: '0.65rem', borderRadius: '10px', display: 'inline-flex' }}>
+                  <QRCodeSVG value="https://drive.google.com/drive/folders/1ByUqJZhA83Wwrb_cVSfKo_hwYfqBnNLV" size={128} />
+                </div>
+                <div style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--text-secondary)', marginTop: '0.4rem' }}>
+                  QR Lecturas Drive
+                </div>
+              </div>
             </div>
           </section>
         </div>
