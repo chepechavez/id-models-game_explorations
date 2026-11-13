@@ -19,6 +19,21 @@ export const ScreenView: React.FC<ScreenViewProps> = ({ cases, models }) => {
   const { room, loading } = useRoom(code);
   const now = useServerClock(250);
 
+  const phase = room?.state.phase;
+  const roundIndexSafe = room?.state.roundIndex;
+
+  useEffect(() => {
+    if (phase === 'final') {
+      fireCelebrationCannon();
+    }
+  }, [phase]);
+
+  useEffect(() => {
+    if (phase === 'revealed') {
+      soundEffects.playSuccess();
+    }
+  }, [phase, roundIndexSafe]);
+
   if (loading || !room || !code) {
     return (
       <main className="container">
@@ -57,18 +72,6 @@ export const ScreenView: React.FC<ScreenViewProps> = ({ cases, models }) => {
 
   const allModelIds = models.map((m) => m.id);
   const decisionMap = computeDecisionMap(room, cases, allModelIds);
-
-  useEffect(() => {
-    if (room.state.phase === 'final') {
-      fireCelebrationCannon();
-    }
-  }, [room.state.phase]);
-
-  useEffect(() => {
-    if (room.state.phase === 'revealed') {
-      soundEffects.playSuccess();
-    }
-  }, [room.state.phase, room.state.roundIndex]);
 
   return (
     <main className="container screen-mode" id="projection-screen-root">
