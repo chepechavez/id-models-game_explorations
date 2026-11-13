@@ -9,6 +9,7 @@ import { HostSetupView } from './views/HostSetupView';
 import { HostPanelView } from './views/HostPanelView';
 import { ScreenView } from './views/ScreenView';
 import { GuideView } from './views/GuideView';
+import { PracticeView } from './views/PracticeView';
 import { soundEffects } from './game/soundEffects';
 
 const models = modelsData as unknown as ModelGuideItem[];
@@ -30,6 +31,7 @@ const TopNavigation: React.FC<TopNavigationProps> = ({
   const isHome = location.pathname === '/' || location.pathname === '';
   const isPlay = location.pathname.startsWith('/play/');
   const isHost = location.pathname.startsWith('/host');
+  const isPractice = location.pathname.startsWith('/practica');
 
   return (
     <nav className="topbar" aria-label="Navegación principal">
@@ -65,6 +67,18 @@ const TopNavigation: React.FC<TopNavigationProps> = ({
           >
             Vademécum (6 modelos)
           </button>
+
+          {/* Modo práctica individual: oculto durante una partida en vivo para no distraer */}
+          {!isPlay && (
+            <Link
+              to="/practica"
+              id="topbar-practice-link"
+              className={`btn btn-sm ${isPractice ? 'btn-emerald' : ''}`}
+              aria-current={isPractice ? 'page' : undefined}
+            >
+              Modo práctica
+            </Link>
+          )}
 
           {/* Botón Ingresar a Sala: solo visible cuando NO se está en la página de inicio */}
           {!isHome && (
@@ -140,6 +154,7 @@ export const AppContent: React.FC = () => {
         <Route path="/host/:code" element={<HostPanelView cases={cases} models={models} />} />
         <Route path="/screen/:code" element={<ScreenView cases={cases} models={models} />} />
         <Route path="/guia" element={<StandaloneGuidePage />} />
+        <Route path="/practica" element={<PracticeView cases={cases} models={models} />} />
       </Routes>
 
       {/* Modal flotante del Vademécum que no interrumpe el juego */}

@@ -14,6 +14,7 @@ Aplicación web sincrónica en tiempo real para clases de posgrado y diplomados 
    - **Consola Privada del Docente (`#/host` y `#/host/:code`):** Permite elegir sesiones de **6, 12 o 18 rondas**, configurar temporizadores por nivel, monitorear cuántos estudiantes han votado (sin delatar qué votaron antes del cierre), extender tiempo (+60s), cerrar votación, revelar retroalimentación y consultar notas privadas de facilitación con citas verificadas.
    - **Vista de Proyección (`#/screen/:code`):** Modo oscuro de alto contraste optimizado para compartir pantalla en Zoom/Meet o proyectar en aula. Muestra QR de ingreso, brief, temporizador, barras de distribución de votos al revelar, **Ranking Top 5** por ronda y, al finalizar, el **Podio Final** junto con el **Mapa de Decisiones de la Cohorte** (matriz de precisión y trampas más frecuentes por modelo).
    - **Vademécum Independiente (`#/guia`):** Guía visual interactiva (en formato de Fichas Tácticas por Modelo y Tabla Comparativa filtrable) disponible tanto dentro como fuera del juego.
+   - **Modo Práctica (`#/practica`):** Entrenamiento individual a ritmo propio sin límite de tiempo ni conexión a sala, con filtro opcional de modelos, retoma automática ante recargas, balance por modelo y reintento de casos fallados.
 
 2. **Banco de 18 Casos y Vademécum Validados con Fuentes Primarias:**
    - **6 Modelos cubiertos (3 casos por modelo: Nivel 1 con 3 opciones, Nivel 2 con 4 opciones, Nivel 3 con 5 opciones):**

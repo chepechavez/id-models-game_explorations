@@ -681,3 +681,56 @@ textarea {
   color: #fda4af;
   font-weight: 600;
 }
+
+/* Modo práctica individual (#/practica) */
+.practice-chip-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 0.65rem;
+}
+
+.practice-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.68rem 0.85rem;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-subtle);
+  cursor: pointer;
+  transition: border-color 0.18s ease, background-color 0.18s ease, transform 0.1s ease;
+}
+
+.practice-chip:hover {
+  background: var(--bg-hover);
+  border-color: var(--border-strong);
+}
+
+.practice-chip.is-on {
+  background: var(--bg-elevated);
+  border-color: var(--chip-color, var(--accent-emerald));
+}
+
+.practice-chip-indicator {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  border: 1px solid var(--border-strong);
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.practice-chip.is-on .practice-chip-indicator {
+  border-color: var(--chip-color, var(--accent-emerald));
+  color: var(--chip-color, var(--accent-emerald));
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.practice-model-map {
+  min-width: 560px;
+}
