@@ -90,7 +90,11 @@ test('Flujo completo E2E: Modo práctica individual (configuración, recarga, Va
 
     await page.click('#practice-confirm-btn');
     await expect(page.locator('#practice-revealed-state')).toBeVisible();
-    await expect(page.locator('#practice-my-choice-feedback')).toBeVisible();
+    await expect(page.locator('#practice-dictamen-card')).toBeVisible();
+    // Cada opción aparece exactamente una vez (sin tarjeta duplicada)
+    await expect(
+      page.locator(`#practice-dictamen-card [data-option-id="${chosenOption}"]`)
+    ).toHaveCount(1);
     // Sin votos de la cohorte en práctica individual
     await expect(page.locator('#practice-revealed-state')).not.toContainText('votos de la cohorte');
 

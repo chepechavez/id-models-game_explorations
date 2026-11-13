@@ -695,38 +695,11 @@ export const PracticeView: React.FC<PracticeViewProps> = ({ cases, models }) => 
                 </div>
               </div>
 
-              {currentCase.feedback[currentAnswer.option] && (
-                <div
-                  className="surface-card-elevated"
-                  id="practice-my-choice-feedback"
-                  style={{
-                    borderLeft: `4px solid ${
-                      currentAnswer.correct ? 'var(--status-correct)' : 'var(--status-wrong)'
-                    }`,
-                  }}
-                >
-                  <span className="kicker">
-                    Retroalimentación sobre tu elección ({modelMap.get(currentAnswer.option)?.shortName})
-                  </span>
-                  <h3 style={{ fontSize: '1.08rem', marginTop: '0.25rem' }}>
-                    {currentCase.feedback[currentAnswer.option]?.label}
-                  </h3>
-                  <p style={{ marginTop: '0.4rem', fontSize: '0.94rem', color: 'var(--text-primary)' }}>
-                    {currentCase.feedback[currentAnswer.option]?.text}
-                  </p>
-                  <div className="author-citation-box">
-                    <strong>Fuente de validación:</strong>{' '}
-                    {currentCase.feedback[currentAnswer.option]?.source}
-                    {currentCase.feedback[currentAnswer.option]?.quote && (
-                      <div style={{ fontStyle: 'italic', marginTop: '0.25rem', color: 'var(--text-muted)' }}>
-                        «{currentCase.feedback[currentAnswer.option]?.quote}»
-                      </div>
-                    )}
-                  </div>
-                </div>
-              )}
-
-              <div className="surface-card" style={{ display: 'flex', flexDirection: 'column', gap: '0.9rem' }}>
+              <div
+                className="surface-card"
+                id="practice-dictamen-card"
+                style={{ display: 'flex', flexDirection: 'column', gap: '0.9rem' }}
+              >
                 <div>
                   <span className="kicker">Dictamen de la junta consultora</span>
                   <h3 style={{ fontSize: '1.2rem', marginTop: '0.2rem' }}>
@@ -747,6 +720,7 @@ export const PracticeView: React.FC<PracticeViewProps> = ({ cases, models }) => 
                     return (
                       <div
                         key={optId}
+                        data-option-id={optId}
                         className={`model-option-card ${
                           fb.verdict === 'correct'
                             ? 'is-correct'
@@ -773,7 +747,9 @@ export const PracticeView: React.FC<PracticeViewProps> = ({ cases, models }) => 
                               <span className="badge badge-gold">⚠️ Trampa frecuente</span>
                             )}
                             {isMyPick && (
-                              <span className="badge" style={{ background: 'rgba(255,255,255,0.16)' }}>
+                              <span
+                                className={`badge ${fb.verdict === 'correct' ? 'badge-emerald' : 'badge-rose'}`}
+                              >
                                 Tu elección
                               </span>
                             )}
@@ -782,9 +758,19 @@ export const PracticeView: React.FC<PracticeViewProps> = ({ cases, models }) => 
 
                         <div style={{ fontWeight: 600, fontSize: '0.92rem' }}>{fb.label}</div>
                         <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)' }}>{fb.text}</p>
-                        <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
-                          Fuente: <strong>{fb.source}</strong>
-                        </div>
+
+                        {fb.quote ? (
+                          <div className="author-citation-box">
+                            <strong>Fuente de validación:</strong> {fb.source}
+                            <div style={{ fontStyle: 'italic', marginTop: '0.25rem', color: 'var(--text-muted)' }}>
+                              «{fb.quote}»
+                            </div>
+                          </div>
+                        ) : (
+                          <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
+                            Fuente: <strong>{fb.source}</strong>
+                          </div>
+                        )}
                       </div>
                     );
                   })}
